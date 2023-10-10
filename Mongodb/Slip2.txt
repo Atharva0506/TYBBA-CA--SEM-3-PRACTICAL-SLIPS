@@ -1,0 +1,110 @@
+------------------------ A_------------------------
+Q1)
+db.Competition.insertMany([
+  {
+    Competition_Name: "Science Fair",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["Alice", "Bob", "Carol"]
+  },
+  {
+    Competition_Name: "Soccer Tournament",
+    Competition_Type: "Sport",
+    Competition_Year: 2022,
+    students: ["David", "Eva", "Frank"]
+  },
+  {
+    Competition_Name: "Project Competition",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["Grace", "Henry", "Ivy"]
+  },
+  {
+    Competition_Name: "Basketball Championship",
+    Competition_Type: "Sport",
+    Competition_Year: 2022,
+    students: ["Jack", "Karen", "Liam"]
+  },
+  {
+    Competition_Name: "Programming Competition",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["Mia", "Noah", "Olivia"]
+  },
+  {
+    Competition_Name: "Swimming Competition",
+    Competition_Type: "Sport",
+    Competition_Year: 2022,
+    students: ["Sophia", "Thomas", "Violet"]
+  },
+  {
+    Competition_Name: "Spelling Bee",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["William", "Xavier", "Yara"]
+  },
+  {
+    Competition_Name: "Baseball Tournament",
+    Competition_Type: "Sport",
+    Competition_Year: 2019,
+    students: ["Zoe", "Aaron", "Bella"]
+  },
+  {
+    Competition_Name: "Robotics Competition",
+    Competition_Type: "Academic",
+    Competition_Year: 2018,
+    students: ["Carlos", "Diana", "Eli"]
+  },
+  {
+    Competition_Name: "Running",
+    Competition_Type: "Sport",
+    Competition_Year: 2019,
+    students: ["Faye", "George", "Hannah"]
+  }
+]);
+
+
+Q2) db.Competition.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Competition.find({Competition_Type: "Sport",Competition_Year: { $gte: 2018, $lte: 2019 }})
+
+Q2) db.Competition.aggregate([{
+    $match: {
+      Competition_Name: "Running",
+      Competition_Year: 2019
+    }
+  },
+  {
+    $unwind: "$students"
+  },
+  {
+    $group: {
+      _id: null,
+      studentCount: { $sum: 1 }
+    }
+  }
+]);
+
+Q3) db.Competition.updateMany(
+  {
+    Competition_Year: 2020,
+    Competition_Name: "Programming Competition"
+  },
+  {
+    $set: { Competition_Name: "Online Programming Competition" }
+  }
+);
+
+Q4) db.Competition.updateOne(
+  {
+    Competition_Year: 2021,
+    Competition_Name: "Project Competition"
+  },
+  {
+    $push: { students: "Prasad More" }
+  }
+);
+
+Q5) db.Competition.find().sort({ Competition_Year: -1 });

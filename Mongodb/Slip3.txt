@@ -1,0 +1,122 @@
+------------------------ A_------------------------
+Q1) db.Hospital.insertMany([
+  {
+    "hospital_name": "Birla Hospital",
+    "city": "Chinchwad",
+    "specialties": ["Pediatric", "Orthopedic"],
+    "doctors": [
+      { "doctor_name": "Dr. Kadam", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Mane", "visit_day": "Tuesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 5
+  },
+  {
+    "hospital_name": "City Hospital",
+    "city": "Pune",
+    "specialties": ["Cardiology", "Neurology"],
+    "doctors": [
+      { "doctor_name": "Dr. More", "visit_day": "Wednesday" },
+      { "doctor_name": "Dr. Sharma", "visit_day": "Thursday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Sunrise Hospital",
+    "city": "Mumbai",
+    "specialties": ["Oncology", "Dermatology"],
+    "doctors": [
+      { "doctor_name": "Dr. Patel", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Shah", "visit_day": "Wednesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4
+  },
+  {
+    "hospital_name": "Greenfield Hospital",
+    "city": "Bangalore",
+    "specialties": ["ENT", "Gynecology"],
+    "doctors": [
+      { "doctor_name": "Dr. Rao", "visit_day": "Tuesday" },
+      { "doctor_name": "Dr. Kumar", "visit_day": "Friday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Lotus Hospital",
+    "city": "Delhi",
+    "specialties": ["Urology", "Dentistry"],
+    "doctors": [
+      { "doctor_name": "Dr. Verma", "visit_day": "Thursday" },
+      { "doctor_name": "Dr. Gupta", "visit_day": "Saturday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4.5
+  },
+  {
+    "hospital_name": "Unity Hospital",
+    "city": "Chennai",
+    "specialties": ["Psychiatry", "Rheumatology"],
+    "doctors": [
+      { "doctor_name": "Dr. Reddy", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Kumar", "visit_day": "Tuesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4
+  },
+  {
+    "hospital_name": "Royal Hospital",
+    "city": "Hyderabad",
+    "specialties": ["Gastroenterology", "Ophthalmology"],
+    "doctors": [
+      { "doctor_name": "Dr. Khan", "visit_day": "Wednesday" },
+      { "doctor_name": "Dr. Ali", "visit_day": "Friday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Hope Hospital",
+    "city": "Kolkata",
+    "specialties": ["Dermatology", "Pediatric"],
+    "doctors": [
+      { "doctor_name": "Dr. Das", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Banerjee", "visit_day": "Wednesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Central Hospital",
+    "city": "Jaipur",
+    "specialties": ["Orthopedic", "Cardiology"],
+    "doctors": [
+      { "doctor_name": "Dr. Mehta", "visit_day": "Thursday" },
+      { "doctor_name": "Dr. Jain", "visit_day": "Saturday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4.2
+  },
+  {
+    "hospital_name": "Silverline Hospital",
+    "city": "Ahmedabad",
+    "specialties": ["Neurology", "ENT"],
+    "doctors": [
+      { "doctor_name": "Dr. Desai", "visit_day": "Tuesday" },
+      { "doctor_name": "Dr. Patel", "visit_day": "Thursday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  }
+])
+
+Q2) db.Hospital.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Hospital.find({"doctors.doctor_name": "Dr. More"})
+
+Q2) db.Hospital.find({city: "Pune"}, { _id: 0,hospital_name: 1,  specialties: 1 })
+
+Q3) db.Hospital.count({services: "ambulance"})
+
+Q4) db.Hospital.find({rating: { $exists: true }})
+
+Q5) db.Hospital.deleteMany({hospital_name: { $regex: /^P/i } });

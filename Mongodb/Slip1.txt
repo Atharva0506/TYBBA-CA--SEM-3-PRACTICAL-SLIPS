@@ -1,0 +1,116 @@
+------------------------ A_------------------------
+Q1)
+db.films.insertMany([
+  {
+    title: "Jurassic Park",
+    director: "Steven Spielberg",
+    release_year: 1993,
+    language: "English",
+    film_type: ["Action", "Adventure"],
+    actors: ["Sam Neill", "Laura Dern", "Jeff Goldblum"]
+  },
+  {
+    title: "The Matrix",
+    director: "Lana Wachowski",
+    release_year: 1999,
+    language: "English",
+    film_type: ["Action", "Science Fiction"],
+    actors: ["Keanu Reeves", "Carrie-Anne Moss", "Hugo Weaving"]
+  },
+  {
+    title: "Inception",
+    director: "Christopher Nolan",
+    release_year: 2010,
+    language: "English",
+    film_type: ["Action", "Science Fiction"],
+    actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"]
+  },
+  {
+    title: "Avatar",
+    director: "James Cameron",
+    release_year: 2009,
+    language: "English",
+    film_type: ["Action", "Adventure", "Science Fiction"],
+    actors: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"]
+  },
+  {
+    title: "The Dark Knight",
+    director: "Christopher Nolan",
+    release_year: 2008,
+    language: "English",
+    film_type: ["Action", "Crime", "Drama"],
+    actors: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"]
+  },
+  {
+    title: "Interstellar",
+    director: "Christopher Nolan",
+    release_year: 2014,
+    language: "English",
+    film_type: ["Adventure", "Drama", "Sci-Fi"],
+    actors: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"]
+  },
+  {
+    title: "Gladiator",
+    director: "Ridley Scott",
+    release_year: 2000,
+    language: "English",
+    film_type: ["Action", "Adventure", "Drama"],
+    actors: ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"]
+  },
+  {
+    title: "Dilwale Dulhania Le Jayenge",
+    director: "Aditya Chopra",
+    release_year: 1995,
+    language: "Hindi",
+    film_type: ["Romance", "Drama"],
+    actors: ["Shah Rukh Khan", "Kajol", "Amrish Puri"]
+  },
+  {
+    title: "Lagaan",
+    director: "Ashutosh Gowariker",
+    release_year: 2001,
+    language: "Hindi",
+    film_type: ["Drama", "Musical"],
+    actors: ["Aamir Khan", "Gracy Singh", "Rachel Shelley"]
+  },
+  {
+    title: "Sholay",
+    director: "Ramesh Sippy",
+    release_year: 1975,
+    language: "Hindi",
+    film_type: ["Action", "Adventure", "Drama"],
+    actors: ["Dharmendra", "Amitabh Bachchan", "Sanjeev Kumar"]
+  },
+  {
+    title: "3 Idiots",
+    director: "Rajkumar Hirani",
+    release_year: 2009,
+    language: "Hindi",
+    film_type: ["Comedy", "Drama"],
+    actors: ["Aamir Khan", "Kareena Kapoor", "R. Madhavan"]
+  },
+  {
+    title: "PK",
+    director: "Rajkumar Hirani",
+    release_year: 2014,
+    language: "Hindi",
+    film_type: ["Comedy", "Drama", "Sci-Fi"],
+    actors: ["Aamir Khan", "Anushka Sharma", "Sushant Singh Rajput"]
+  }
+])
+
+
+Q2) db.films.find({}).pretty()
+
+
+------------------------ B ------------------------
+
+Q1)  db.films.find({language: "English", release_year: { $lt: 2000 }})
+
+Q2) db.films.find({film_type: "Action"title: { $regex: /^K/i } }, { _id: 0, title: 1, release_year: 1 })
+
+Q3) db.films.find({ language: "Hindi" },{ _id: 0, title: 1, release_year: 1 }).sort({ release_year: -1 }).limit(5)
+
+Q4) db.films.count({actors: { $nin: ["Akshay Kumar"] }});
+
+Q5) db.films.updateOne({ title: "Jungle Book" },{ $set: { release_year: 2016 } })

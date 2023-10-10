@@ -1,0 +1,107 @@
+------------------------ A_------------------------
+Q1)db.Book.insertMany([
+  {
+    "Book_Title": "Definitive Guide to MongoDB",
+    "Publisher_name": "BPB",
+    "Authors": ["John Smith", "Jane Doe", "David Brown"],
+    "Language": "English",
+    "Publication_year": 2021,
+    "ISBN": "978-1234567890",
+    "price": 29.99
+  },
+  {
+    "Book_Title": "The Java Language Specification",
+    "Publisher_name": "BPB",
+    "Authors": ["Alice Johnson", "Bob Wilson", "Carol Clark"],
+    "Language": "English",
+    "Publication_year": 2020,
+    "ISBN": "978-0987654321",
+    "price": 24.99
+  },
+  {
+    "Book_Title": "Python for Beginners",
+    "Publisher_name": "O'Reilly",
+    "Authors": ["Michael Smith", "Sarah Adams"],
+    "Language": "English",
+    "Publication_year": 2019,
+    "ISBN": "978-9876543210",
+    "price": 19.99
+  },
+  {
+    "Book_Title": "Data Science Essentials",
+    "Publisher_name": "Wiley",
+    "Authors": ["Emily Johnson", "James Brown", "Sophia Miller"],
+    "Language": "English",
+    "Publication_year": 2018,
+    "ISBN": "978-8765432109",
+    "price": 34.99
+  },
+  {
+    "Book_Title": "JavaScript Mastery",
+    "Publisher_name": "BPB",
+    "Authors": ["Robert White", "Olivia Davis", "Daniel Harris"],
+    "Language": "English",
+    "Publication_year": 2022,
+    "ISBN": "978-1098765432",
+    "price": 27.99
+  },
+  {
+    "Book_Title": "Machine Learning Algorithms",
+    "Publisher_name": "O'Reilly",
+    "Authors": ["Laura Lee", "Thomas Wilson"],
+    "Language": "English",
+    "Publication_year": 2017,
+    "ISBN": "978-1234509876",
+    "price": 32.99
+  },
+  {
+    "Book_Title": "Web Development with HTML and CSS",
+    "Publisher_name": "Wiley",
+    "Authors": ["Emma Harris", "William Clark"],
+    "Language": "English",
+    "Publication_year": 2019,
+    "ISBN": "978-7654321098",
+    "price": 21.99
+  },
+  {
+    "Book_Title": "Artificial Intelligence Fundamentals",
+    "Publisher_name": "BPB",
+    "Authors": ["Sophia Adams", "Matthew Smith", "Isabella Davis"],
+    "Language": "English",
+    "Publication_year": 2020,
+    "ISBN": "978-2345678901",
+    "price": 26.99
+  },
+  {
+    "Book_Title": "C++ Programming Basics",
+    "Publisher_name": "O'Reilly",
+    "Authors": ["David Brown", "Olivia Johnson"],
+    "Language": "English",
+    "Publication_year": 2018,
+    "ISBN": "978-9876543219",
+    "price": 23.99
+  },
+  {
+    "Book_Title": "Networking Essentials",
+    "Publisher_name": "Wiley",
+    "Authors": ["Daniel Wilson", "Sarah Clark", "Michael Davis"],
+    "Language": "English",
+    "Publication_year": 2021,
+    "ISBN": "978-3456789012",
+    "price": 28.99
+  }
+])
+
+Q2) db.Book.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Book.find({Publisher_name: "BPB"})
+
+Q2) db.Book.find({Publication_year: { $gte: 2019, $lte: 2021 }}, {_id: 0, Book_Title: 1,  Authors: 1 })
+
+Q3) db.Book.count({$where: "this.Authors.length === 3"})
+
+Q4) db.Book.updateOne({Book_Title: "Definitive Guide to MongoDB"},{ $set: {ISBN: "1-4302-3051-7" } });
+
+Q5) db.Book.updateOne({Book_Title: "The Java Language Specification"},{ $push: {Authors: "Alex Buckley"}});

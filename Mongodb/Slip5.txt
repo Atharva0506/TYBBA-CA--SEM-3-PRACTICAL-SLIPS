@@ -1,0 +1,117 @@
+------------------------ A ------------------------
+Q1)db.Institute.insertMany([
+  {
+    "Name": "Disha Institute",
+    "City": "Pune",
+    "No_of_faculties": 15,
+    "Est_Year": 2005,
+    "Courses": [
+      { "Course_Name": "Java", "Dur_in_month": 6, "Fees": 5000 },
+      { "Course_Name": "Python", "Dur_in_month": 5, "Fees": 4500 }
+    ]
+  },
+  {
+    "Name": "ABC Institute",
+    "City": "Mumbai",
+    "No_of_faculties": 20,
+    "Est_Year": 2010,
+    "Courses": [
+      { "Course_Name": "Java", "Dur_in_month": 7, "Fees": 5500 },
+      { "Course_Name": "Web Development", "Dur_in_month": 6, "Fees": 6000 }
+    ]
+  },
+  {
+    "Name": "XYZ Institute",
+    "City": "Delhi",
+    "No_of_faculties": 12,
+    "Est_Year": 2003,
+    "Courses": [
+      { "Course_Name": "C++", "Dur_in_month": 5, "Fees": 4800 },
+      { "Course_Name": "Data Science", "Dur_in_month": 8, "Fees": 7000 }
+    ]
+  },
+  {
+    "Name": "MNO Institute",
+    "City": "Bangalore",
+    "No_of_faculties": 18,
+    "Est_Year": 2007,
+    "Courses": [
+      { "Course_Name": "Machine Learning", "Dur_in_month": 6, "Fees": 6500 },
+      { "Course_Name": "JavaScript", "Dur_in_month": 4, "Fees": 4200 }
+    ]
+  },
+  {
+    "Name": "EFG Institute",
+    "City": "Chennai",
+    "No_of_faculties": 14,
+    "Est_Year": 2015,
+    "Courses": [
+      { "Course_Name": "Android App Development", "Dur_in_month": 5, "Fees": 5500 },
+      { "Course_Name": "Web Design", "Dur_in_month": 4, "Fees": 4000 }
+    ]
+  },
+  {
+    "Name": "GHI Institute",
+    "City": "Hyderabad",
+    "No_of_faculties": 16,
+    "Est_Year": 2009,
+    "Courses": [
+      { "Course_Name": "Networking", "Dur_in_month": 6, "Fees": 5900 },
+      { "Course_Name": "Database Management", "Dur_in_month": 7, "Fees": 6800 }
+    ]
+  },
+  {
+    "Name": "JKL Institute",
+    "City": "Kolkata",
+    "No_of_faculties": 21,
+    "Est_Year": 2018,
+    "Courses": [
+      { "Course_Name": "Digital Marketing", "Dur_in_month": 3, "Fees": 3500 },
+      { "Course_Name": "Java", "Dur_in_month": 7, "Fees": 5500 }
+    ]
+  },
+  {
+    "Name": "PQR Institute",
+    "City": "Jaipur",
+    "No_of_faculties": 19,
+    "Est_Year": 2004,
+    "Courses": [
+      { "Course_Name": "Python", "Dur_in_month": 6, "Fees": 5200 },
+      { "Course_Name": "Artificial Intelligence", "Dur_in_month": 8, "Fees": 7200 }
+    ]
+  },
+  {
+    "Name": "LMN Institute",
+    "City": "Ahmedabad",
+    "No_of_faculties": 13,
+    "Est_Year": 2017,
+    "Courses": [
+      { "Course_Name": "Web Development", "Dur_in_month": 5, "Fees": 4800 },
+      { "Course_Name": "Data Analysis", "Dur_in_month": 6, "Fees": 6500 }
+    ]
+  },
+  {
+    "Name": "RST Institute",
+    "City": "Chandigarh",
+    "No_of_faculties": 17,
+    "Est_Year": 2019,
+    "Courses": [
+      { "Course_Name": "Java", "Dur_in_month": 7, "Fees": 5500 },
+      { "Course_Name": "Machine Learning", "Dur_in_month": 8, "Fees": 7000 }
+    ]
+  }
+])
+
+Q2)
+
+------------------------ B ------------------------
+
+Q1) db.Institute.find({Est_Year: { $lt: 2010 }}, {_id: 0, Name: 1 })
+
+Q2) db.Institute.find({"Courses.Course_Name": "Java"})
+
+Q3) db.Institute.updateOne({ Name: "Disha Institute"},{$set: { No_of_faculties: 10} });
+
+Q4) db.Institute.find().sort({ Est_Year: -1 }).limit(3);
+
+Q5) db.Institute.count({City: "Pune", Est_Year: { $gt: 2019 }});

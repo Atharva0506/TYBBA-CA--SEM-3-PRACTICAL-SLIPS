@@ -73,7 +73,7 @@ db.Result.insertMany([
 
 
 
-db.Result.find({ grade: 'A' });
+db.Result.find({ grade: { $exists: true } });
 
 
 db.Result.find({ "test_marks.subject": "Java", "test_marks.marks": { $gte: 70 } });
