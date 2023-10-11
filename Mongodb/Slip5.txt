@@ -102,7 +102,7 @@ Q1)db.Institute.insertMany([
   }
 ])
 
-Q2)
+Q2)  db.Institute.find({}).pretty()
 
 ------------------------ B ------------------------
 

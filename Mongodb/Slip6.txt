@@ -1,0 +1,127 @@
+------------------------ A_------------------------
+Q1) db.Doctor.insertMany([
+  {
+    "Doctor_name": "Dr. Patil",
+    "Contact_No": 9876543210,
+    "City": "Pune",
+    "Qualification": "MBBS",
+    "specialization": ["ENT", "General Surgery"],
+    "hospitals": [
+      { "hospital_name": "Niramay Hospital", "visit_day": "Monday" },
+      { "hospital_name": "Birla Hospital", "visit_day": "Tuesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Sharma",
+    "Contact_No": 9876543211,
+    "City": "Mumbai",
+    "Qualification": "MD",
+    "specialization": ["Cardiology", "Neurology"],
+    "hospitals": [
+      { "hospital_name": "City Hospital", "visit_day": "Wednesday" },
+      { "hospital_name": "Metro Hospital", "visit_day": "Thursday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Patel",
+    "Contact_No": 9876543212,
+    "City": "Pimpri",
+    "Qualification": "MS",
+    "specialization": ["Orthopedics", "Dermatology"],
+    "hospitals": [
+      { "hospital_name": "Pimpri Hospital", "visit_day": "Friday" },
+      { "hospital_name": "Unity Hospital", "visit_day": "Saturday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Khan",
+    "Contact_No": 9876543213,
+    "City": "Mumbai",
+    "Qualification": "MBBS",
+    "specialization": ["Pediatrics", "Radiology"],
+    "hospitals": [
+      { "hospital_name": "Mumbai Central Hospital", "visit_day": "Monday" },
+      { "hospital_name": "Seaside Hospital", "visit_day": "Wednesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Joshi",
+    "Contact_No": 9876543214,
+    "City": "Pune",
+    "Qualification": "MD",
+    "specialization": ["Gynecology", "Obstetrics"],
+    "hospitals": [
+      { "hospital_name": "Aundh Hospital", "visit_day": "Tuesday" },
+      { "hospital_name": "Deccan Hospital", "visit_day": "Thursday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Gupta",
+    "Contact_No": 9876543215,
+    "City": "Mumbai",
+    "Qualification": "MS",
+    "specialization": ["Ophthalmology", "Urology"],
+    "hospitals": [
+      { "hospital_name": "Sunrise Hospital", "visit_day": "Monday" },
+      { "hospital_name": "City Medical Center", "visit_day": "Wednesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Desai",
+    "Contact_No": 9876543216,
+    "City": "Pimpri",
+    "Qualification": "MBBS",
+    "specialization": ["Dentistry", "Psychiatry"],
+    "hospitals": [
+      { "hospital_name": "Pimpri General Hospital", "visit_day": "Thursday" },
+      { "hospital_name": "Sahyadri Hospital", "visit_day": "Friday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Kumar",
+    "Contact_No": 9876543217,
+    "City": "Mumbai",
+    "Qualification": "MD",
+    "specialization": ["Nephrology", "Rheumatology"],
+    "hospitals": [
+      { "hospital_name": "Mumbai Heart Institute", "visit_day": "Tuesday" },
+      { "hospital_name": "Coastal Hospital", "visit_day": "Thursday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Shah",
+    "Contact_No": 9876543218,
+    "City": "Pune",
+    "Qualification": "MBBS",
+    "specialization": ["Dermatology", "Allergy & Immunology"],
+    "hospitals": [
+      { "hospital_name": "Aundh Medical Center", "visit_day": "Monday" },
+      { "hospital_name": "Unity Hospital", "visit_day": "Wednesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Verma",
+    "Contact_No": 9876543219,
+    "City": "Mumbai",
+    "Qualification": "MD",
+    "specialization": ["Oncology", "Hematology"],
+    "hospitals": [
+      { "hospital_name": "Mumbai Cancer Center", "visit_day": "Monday" },
+      { "hospital_name": "Sunrise Hospital", "visit_day": "Friday" }
+    ]
+  }
+])
+
+Q2) db.Doctor.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Doctor.count({Qualification: "MBBS"});
+
+Q2) db.Doctor.find({City: "Mumbai"}, {_id: 0, Qualification: 1, specialization: 1 });
+
+Q3) db.Doctor.find({specialization: "ENT"}).limit(2);
+
+Q4) db.Doctor.updateOne({Doctor_name: "Dr. Patil"},{ $set: { Qualification: "MD" } });
+
+Q5) db.Doctor.deleteMany({ City: { $ne: "Pimpri" }});

@@ -1,4 +1,6 @@
-db.Result.insertMany([
+------------------------ A_------------------------
+
+Q1) db.Result.insertMany([
   {
     student_id: 1,
     student_name: "Mr. Anuj Joshi",
@@ -71,19 +73,17 @@ db.Result.insertMany([
   }
 ]);
 
+Q2) db.Result.find({}).pretty()
 
+------------------------ B ------------------------
 
-db.Result.find({ grade: { $exists: true } });
+Q1) db.Result.find({ grade: { $exists: true } });
 
+Q2) db.Result.find({ "test_marks.subject": "Java", "test_marks.marks": { $gte: 70 } });
 
-db.Result.find({ "test_marks.subject": "Java", "test_marks.marks": { $gte: 70 } });
+Q3) db.Result.find({ student_name: /ne$/ });
 
+Q4) db.Result.find({ "test_marks": { $size: 4 } }, { student_name: 1, class: 1 });
 
-db.Result.find({ student_name: /ne$/ });
-
-
-db.Result.find({ "test_marks": { $size: 4 } }, { student_name: 1, class: 1 });
-
-
-db.Result.updateOne({ student_name: "Ms. Priya Rane" }, { $set: { percentage: 85 } });
+Q5) db.Result.updateOne({ student_name: "Ms. Priya Rane" }, { $set: { percentage: 85 } });
 

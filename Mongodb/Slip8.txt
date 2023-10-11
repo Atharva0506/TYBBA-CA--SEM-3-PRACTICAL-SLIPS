@@ -1,16 +1,114 @@
 ------------------------ A_------------------------
-Q1)
+Q1) db.Album.insertMany([
+  {
+    title: "Album 1",
+    artist: ["Artist A", "Artist B"],
+    released_year: 2000,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 180 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 2",
+    artist: ["Artist C", "Artist D"],
+    released_year: 2005,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 200 },
+      { track_id: 2, track_title: "Track 2", seconds: 238 },
+    ],
+    genre: "Hip-Hop"
+  },
+  {
+    title: "What's Going On",
+    artist: ["Marvin Gaye"],
+    released_year: 1971,
+    tracks: [
+      { track_id: 1, track_title: "What's Going On", seconds: 238 },
+      { track_id: 2, track_title: "Inner City Blues", seconds: 398 },
+      { track_id: 3, track_title: "Mercy Mercy Me", seconds: 274 }
+    ],
+    genre: "Soul"
+  },
+  {
+    title: "Album 3",
+    artist: ["Artist E"],
+    released_year: 2010,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 215 },
+      
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 4",
+    artist: ["Artist F"],
+    released_year: 2022,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 192 },
+      { track_id: 2, track_title: "Track 2", seconds: 238 },
+      { track_id: 3, track_title: "Track 3", seconds: 205 }
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 5",
+    artist: ["Artist G", "Artist H"],
+    released_year: 2003,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 193 },
+      { track_id: 2, track_title: "Track 2", seconds: 238 },
+    ],
+    genre: "Hip-Hop"
+  },
+  {
+    title: "Album 6",
+    artist: ["Artist I"],
+    released_year: 2019,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 187 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 7",
+    artist: ["Artist J"],
+    released_year: 2007,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 198 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 8",
+    artist: ["Artist K"],
+    released_year: 2015,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 194 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 9",
+    artist: ["Artist L"],
+    released_year: 2008,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 191 },
+    ],
+    genre: "Hip-Hop"
+  }
+])
 
-Q2)
+Q2) db.Album.find({}).pretty()
 
 ------------------------ B ------------------------
 
-Q1) 
+Q1) db.Album.count({released_year: { $gte: 2010, $lte: 2020 }});
 
-Q2) 
+Q2) db.Album.find({genre: "Rock"}).limit(2);
 
-Q3) 
+Q3) db.Album.find({"tracks": { $size: 3 }}, {_id: 0, title: 1, artist: 1 })
 
-Q4) 
+Q4) db.Album.find({ genre: { $nin: ["Rock", "Hip-Hop"] }});
 
-Q5) 
+Q5) db.Album.updateOne({title: "What's Going On","tracks.track_id": 2},{ $set: { "tracks.$.seconds": 6.38 } })
