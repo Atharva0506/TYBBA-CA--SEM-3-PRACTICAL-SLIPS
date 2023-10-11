@@ -105,7 +105,7 @@ Q2) db.films.find({}).pretty()
 
 ------------------------ B ------------------------
 
-Q1)  db.films.find({language: "English", release_year: { $lt: 2000 }})
+Q1) db.films.find({language: "English", release_year: { $lt: 2000 }})
 
 Q2) db.films.find({film_type: "Action"title: { $regex: /^K/i } }, { _id: 0, title: 1, release_year: 1 })
 

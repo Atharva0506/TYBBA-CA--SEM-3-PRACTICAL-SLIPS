@@ -1,0 +1,77 @@
+------------------------ A_------------------------
+Q1) db.Musicians.insertMany([
+  {
+    name: "A. R. Rahman",
+    birth_year: 1966,
+    albums: ["Album 1", "Album 2"],
+    instruments: ["Piano", "Guitar"]
+  },
+  {
+    name: "Pandit Ravi Shankar",
+    birth_year: 1920,
+    albums: ["Sitar Concerto No. 1", "Ragas & Talas"],
+    instruments: ["Sitar", "Tabla"]
+  },
+  {
+    name: "John Lennon",
+    birth_year: 1940,
+    albums: ["Imagine", "Double Fantasy"],
+    instruments: ["Vocals", "Guitar"]
+  },
+  {
+    name: "Miles Davis",
+    birth_year: 1926,
+    albums: ["Kind of Blue", "Bitches Brew"],
+    instruments: ["Trumpet", "Flugelhorn"]
+  },
+  {
+    name: "Elton John",
+    birth_year: 1947,
+    albums: ["Goodbye Yellow Brick Road", "Rocket Man"],
+    instruments: ["Piano", "Vocals"]
+  },
+  {
+    name: "Bob Dylan",
+    birth_year: 1941,
+    albums: ["The Freewheelin' Bob Dylan", "Highway 61 Revisited"],
+    instruments: ["Guitar", "Harmonica"]
+  },
+  {
+    name: "Nina Simone",
+    birth_year: 1933,
+    albums: ["I Put a Spell on You", "Feeling Good"],
+    instruments: ["Piano", "Vocals"]
+  },
+  {
+    name: "Jimi Hendrix",
+    birth_year: 1942,
+    albums: ["Are You Experienced", "Electric Ladyland"],
+    instruments: ["Guitar", "Vocals"]
+  },
+  {
+    name: "B.B. King",
+    birth_year: 1925,
+    albums: ["Live at the Regal", "Lucille"],
+    instruments: ["Guitar", "Vocals"]
+  },
+  {
+    name: "Prince",
+    birth_year: 1958,
+    albums: ["Purple Rain", "Sign o' the Times"],
+    instruments: ["Guitar", "Keyboards"]
+  }
+])
+
+Q2) db.Musicians.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Musicians.find({}, { _id: 0, name: 1 }).sort({ birth_year: -1 });
+
+Q2) db.Musicians.updateOne({ _id: 3 }, {$push: {  albums: "New Album" } })
+
+Q3) db.Musicians.updateOne({name: "A. R. Rahman"},{$set: {  occupations: ["Composer", "Singer", "Musician"] }});
+
+Q4) db.Musicians.find({ $where: "this.instruments.length === 2"}, {_id: 1, fieldname: 1});
+
+Q5) db.Musicians.updateOne({ name: "Pandit Ravi Shankar" }, { $set: {  birth_year: 1920 }});

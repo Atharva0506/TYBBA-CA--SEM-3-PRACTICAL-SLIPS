@@ -1,0 +1,87 @@
+------------------------ A_------------------------
+Q1) db.Projects.insertMany([
+  {
+    proj_name: "Project A",
+    proj_manager: "Manager X",
+    start_date: new Date("2022-11-15"),
+    dur_in_month: 6,
+    emps_work_in_proj: ["Employee 1", "Employee 2"]
+  },
+  {
+    proj_name: "Project B",
+    proj_manager: "Manager Y",
+    start_date: new Date("2022-12-10"),
+    dur_in_month: 8,
+    emps_work_in_proj: ["Employee 3", "Employee 4"]
+  },
+  {
+    proj_name: "Project C",
+    proj_manager: "Manager Z",
+    start_date: new Date("2022-10-20"),
+    dur_in_month: 12,
+    emps_work_in_proj: ["Employee 5", "Employee 6"]
+  },
+  {
+    proj_name: "College Automation",
+    proj_manager: "Mr. Sumit Jadhav",
+    start_date: new Date("2023-04-05"),
+    dur_in_month: 10,
+    emps_work_in_proj: ["Employee 7", "Employee 8"]
+  },
+  {
+    proj_name: "Project D",
+    proj_manager: "Manager M",
+    start_date: new Date("2022-09-25"),
+    dur_in_month: 9,
+    emps_work_in_proj: ["Employee 9", "Employee 10"]
+  },
+  {
+    proj_name: "Project E",
+    proj_manager: "Manager N",
+    start_date: new Date("2022-08-15"),
+    dur_in_month: 7,
+    emps_work_in_proj: ["Employee 11", "Employee 12"]
+  },
+  {
+    proj_name: "Project F",
+    proj_manager: "Manager O",
+    start_date: new Date("2023-03-01"),
+    dur_in_month: 11,
+    emps_work_in_proj: ["Employee 13", "Employee 14"]
+  },
+  {
+    proj_name: "Project G",
+    proj_manager: "Manager P",
+    start_date: new Date("2023-02-10"),
+    dur_in_month: 6,
+    emps_work_in_proj: ["Employee 15", "Employee 16"]
+  },
+  {
+    proj_name: "Project H",
+    proj_manager: "Manager Q",
+    start_date: new Date("2022-07-05"),
+    dur_in_month: 5,
+    emps_work_in_proj: ["Employee 17", "Employee 18"]
+  },
+  {
+    proj_name: "Project I",
+    proj_manager: "Manager R",
+    start_date: new Date("2022-06-20"),
+    dur_in_month: 4,
+    emps_work_in_proj: ["Employee 19", "Employee 20"]
+  }
+])
+
+Q2) db.Projects.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Projects.find({ dur_in_month: { $gte: 6 }}, { _id: 0,  proj_id: 1,  proj_name: 1 });
+
+Q2) db.Projects.count({proj_manager: "Mr. Sumit Jadhav"});
+
+Q3) db.Projects.updateMany({},{  $inc: { dur_in_month: 1 } })
+
+Q4) db.Projects.updateOne({ proj_name: "College Automation"},{$push: {  emps_work_in_proj: "Mr. Mahesh Kulkarni" } })
+
+Q5) db.Projects.find({emps_work_in_proj: { $size: 4 }})
