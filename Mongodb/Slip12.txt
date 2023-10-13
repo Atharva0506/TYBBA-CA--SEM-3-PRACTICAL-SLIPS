@@ -1,0 +1,214 @@
+------------------------ A ------------------------
+
+Create a ‘Customer’ collection of documents with the following fields:
+{ 
+    Cust_id: 1,
+    Cust_name: "Mr. Joshi",
+    address:{city: "Pune", street: "S. B. Road"},
+    orders: [
+        { 
+            id:101,
+            orderItems:[
+                { productId: 8, price: 560, productName: "keyboard"},
+                ...
+                ],
+        },
+    ...
+    ]
+}
+
+db.createCollection("Customer");
+
+1) Insert at least 10 documents in a collection.
+db.Customer.insertMany([
+  {
+    Cust_id: 1,
+    Cust_name: "Mr. Joshi",
+    address: { city: "Pune", street: "S. B. Road" },
+    orders: [
+      {
+        id: 101,
+        orderItems: [
+          { productId: 8, price: 560, productName: "keyboard" },
+          { productId: 12, price: 320, productName: "mouse" }
+        ]
+      },
+      {
+        id: 102,
+        orderItems: [
+          { productId: 7, price: 2200, productName: "laptop" },
+          { productId: 13, price: 200, productName: "printer" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 2,
+    Cust_name: "Mrs. Gupta",
+    address: { city: "Mumbai", street: "Juhu" },
+    orders: [
+      {
+        id: 103,
+        orderItems: [
+          { productId: 10, price: 150, productName: "headphones" },
+          { productId: 15, price: 9000, productName: "smartphone" },
+          { productId: 16, price: 400, productName: "charger" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 3,
+    Cust_name: "Dr. Reddy",
+    address: { city: "Hyderabad", street: "Banjara Hills" },
+    orders: [
+      {
+        id: 104,
+        orderItems: [
+          { productId: 9, price: 450, productName: "monitor" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 4,
+    Cust_name: "Mr. Kumar",
+    address: { city: "Delhi", street: "Connaught Place" },
+    orders: [
+      {
+        id: 105,
+        orderItems: [
+          { productId: 11, price: 650, productName: "gaming console" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 5,
+    Cust_name: "Mrs. Sharma",
+    address: { city: "Kolkata", street: "Park Street" },
+    orders: [
+      {
+        id: 106,
+        orderItems: [
+          { productId: 14, price: 280, productName: "router" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 6,
+    Cust_name: "Mr. Patel",
+    address: { city: "Ahmedabad", street: "C. G. Road" },
+    orders: [
+      {
+        id: 107,
+        orderItems: [
+          { productId: 10, price: 150, productName: "headphones" },
+          { productId: 16, price: 400, productName: "external hard drive" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 7,
+    Cust_name: "Mrs. Khan",
+    address: { city: "Bengaluru", street: "Indiranagar" },
+    orders: [
+      {
+        id: 108,
+        orderItems: [
+          { productId: 15, price: 9000, productName: "smartphone" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 8,
+    Cust_name: "Dr. Verma",
+    address: { city: "Chennai", street: "Adyar" },
+    orders: [
+      {
+        id: 109,
+        orderItems: [
+          { productId: 11, price: 650, productName: "gaming console" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 9,
+    Cust_name: "Mr. Singh",
+    address: { city: "Lucknow", street: "Hazratganj" },
+    orders: [
+      {
+        id: 110,
+        orderItems: [
+          { productId: 14, price: 280, productName: "router" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 10,
+    Cust_name: "Mrs. Devi",
+    address: { city: "Jaipur", street: "C-Scheme" },
+    orders: [
+      {
+        id: 111,
+        orderItems: [
+          { productId: 12, price: 320, productName: "mouse" },
+          { productId: 16, price: 400, productName: "external hard drive" }
+        ]
+      },
+      {
+        id: 112,
+        orderItems: [
+          { productId: 14, price: 280, productName: "router" }
+        ]
+      },
+      {
+        id: 113,
+        orderItems: [
+          { productId: 11, price: 650, productName: "gaming console" }
+        ]
+      },
+    ]
+  }
+]);
+
+
+2) Display all documents of ‘Customer’ collection in proper format.
+db.Customer.find().pretty();
+
+------------------------ B ------------------------
+
+1) Display customer details that have placed two orders.
+db.Customer.find({"orders":{$size:3}});
+
+2) Replace the document having id 3 with a new document.
+db.Customer.replaceOne({ Cust_id: 3 }, {
+  Cust_id: 3,
+  Cust_name: "Dr. Rajesh",
+  address: { city: "Bangalore", street: "MG Road" },
+  orders: [
+    {
+      id: 112,
+      orderItems: [
+        { productId: 17, price: 199, productName: "keyboard" }
+      ]
+    }
+  ]
+})
+
+
+3) Increment the price of ‘keyboard’ by Rs. 100.
+db.Customer.update({ "orders.orderItems.productName": "keyboard" }, { $inc: { "orders.$[i].orderItems.$[j].price": 100 } }, { arrayFilters: [{ "i.productName": "keyboard" }, { "j.productName": "keyboard" }] })
+
+
+4) Add one more product in an order having order id 101, which is placed by “Mr.Joshi”.
+db.Customer.update({ Cust_name: "Mr. Joshi", "orders.id": 101 }, { $push: { "orders.$.orderItems": { productId: 18, price: 299, productName: "monitor" } } })
+
+5) Display all the documents having customer id greater than or equal to 4. (Usecursor)
+var cursor = db.Customer.find({ Cust_id: { $gte: 4 } });
+cursor.forEach(printjson);
