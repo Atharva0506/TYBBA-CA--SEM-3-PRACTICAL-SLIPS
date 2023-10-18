@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ------------------------ A ------------------------
 Create a 'Person' collection of documents with the following fields:
 
@@ -127,3 +128,134 @@ db.Person.update(
   { pname: "Mrs. Mahajan" },
   { $addToSet: { profession: "New Profession" } }
 )
+=======
+------------------------ A ------------------------
+Create a 'Person' collection of documents with the following fields:
+
+{pname: "….", contact_no: …. , city: "….", profession: ["….","…."],
+cars:[{model: "….", year: ….,price: …. }, …. ]}
+
+db.createCollection("Person");
+
+1) Insert at least 10 documents in a collection, use bulk insert.
+
+var bulk = db.Person.initializeUnorderedBulkOp();
+bulk.insert({
+    pname: "Rahul Sharma",
+    contact_no: "9876543210",
+    city: "Mumbai",
+    profession: ["Engineer", "Artist"],
+    cars: [
+        { model: "Honda City", year: 2021, price: 1500000 },
+        { model: "Maruti Swift", year: 2019, price: 600000 }
+    ]
+});
+bulk.insert({
+pname: "Neha Kapoor",
+contact_no: "8765432109",
+city: "Delhi",
+profession: ["Doctor", "Teacher"],
+cars: [
+    { model: "Toyota Corolla", year: 2020, price: 1800000 }
+]
+});
+bulk.insert({
+pname: "Amit Singh",
+contact_no: "7654321098",
+city: "Pune",
+profession: ["Software Developer"],
+cars: [
+    { model: "Ford F-150", year: 2018, price: 2500000 },
+    { model: "Hyundai Tucson", year: 2022, price: 2200000 },
+    { model: "Tata Nano", year: 2019, price: 1200000 }
+]
+});
+bulk.insert({
+pname: "Rajesh Verma",
+contact_no: "6543210987",
+city: "Chennai",
+profession: ["Chef"],
+cars: [
+    { model: "Volkswagen Golf", year: 2019, price: 1600000 }
+]
+});
+bulk.insert({
+pname: "Sneha Gupta",
+contact_no: "5432109876",
+city: "Kolkata",
+profession: ["Lawyer", "Consultant"],
+cars: [
+    { model: "Nissan Altima", year: 2020, price: 1400000 }
+]
+});
+bulk.insert({
+pname: "Alok Choudhary",
+contact_no: "4321098765",
+city: "Mumbai",
+profession: ["Architect", "Designer"],
+cars: [
+    { model: "Audi A6", year: 2021, price: 2800000 },
+    { model: "Mazda CX-5", year: 2022, price: 2300000 }
+]
+});
+bulk.insert({
+pname: "Mrs. Mahajan",
+contact_no: "3210987654",
+city: "Chinchwad",
+profession: ["Homemaker"],
+cars: [
+    { model: "Chevrolet Cruze", year: 2019, price: 1700000 }
+]
+});
+bulk.insert({
+pname: "Vikas Patel",
+contact_no: "2109876543",
+city: "Delhi",
+profession: ["Engineer", "Entrepreneur"],
+cars: [
+    { model: "BMW 3 Series", year: 2021, price: 3200000 }
+]
+});
+bulk.insert({
+pname: "Anita Roy",
+contact_no: "1098765432",
+city: "Kolkata",
+profession: ["Journalist"],
+cars: [
+    { model: "Honda Civic", year: 2020, price: 1900000 }
+]
+});
+bulk.insert({
+pname: "Avinash Sharma",
+contact_no: "0987654321",
+city: "Mumbai",
+profession: ["Doctor", "Researcher"],
+cars: [
+    { model: "Toyota Camry", year: 2019, price: 2000000 }
+]
+});
+bulk.execute();
+
+2) Display all documents of ‘Person’ collection in proper format.
+db.Person.find().pretty();
+
+------------------------ B ------------------------
+
+1) Display the name and contact number of person having 3 cars.
+db.Person.find({"cars":{$size:3}});
+
+2) Display different cities from which persons belong.
+db.Person.distinct("city")
+
+3) Create an index using the ‘pname’ field and name it as ‘Person Name Index’.
+db.Person.createIndex({ pname: 1 }, { name: "Person Name Index" })
+
+4) Delete the first person document whose city is ‘Chinchwad’.
+db.Person.findOneAndDelete({ city: "Chinchwad" })
+
+5) Update Person document whose name is “Mrs. Mahajan” while updating add only those professions which are not already exists in her profession field.
+db.Person.update(
+  { pname: "Mrs. Mahajan" },
+  { $addToSet: { profession: "New Profession" } }
+)
+>>>>>>> 46e777ba1421c89223bdcdc2533d0856a4305a72

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ------------------------ A ------------------------
 
 Create a ‘Student’ collection of documents with the following fields: [15 M]
@@ -134,4 +135,142 @@ db.Student.update({ rno: 2, class: "TYBBA_CA" }, { $push: { hobbies: { $each: ["
 db.Student.update({ age: { $gte: 18 } }, { $rename: { fname: "firstname", lname: "lastname" } }, { multi: true })
 
 5) Insert a new field ‘percentage’ in the student document having class ‘TYBBA_CA’ and roll number 1.
+=======
+------------------------ A ------------------------
+
+Create a ‘Student’ collection of documents with the following fields: [15 M]
+{
+    rno: …., class: "….",
+    fname: "….", lname: "….",
+    age: …., address:{street: "….", city: "….", state: "…."},
+    hobbies: ["….","…."]
+}
+
+db.createCollection("Student");
+
+1) Insert at least 10 documents in a collection, use bulk insert.
+var bulk = db.Student.initializeUnorderedBulkOp();
+
+bulk.insert({
+  rno: 1,
+  class: "FYBBA_CA",
+  fname: "Amit",
+  lname: "Verma",
+  age: 19,
+  address: { street: "123 Main St", city: "Mumbai", state: "Maharashtra" },
+  hobbies: ["Reading", "Painting"]
+});
+
+bulk.insert({
+  rno: 2,
+  class: "SYBBA_CA",
+  fname: "Rahul",
+  lname: "Sharma",
+  age: 20,
+  address: { street: "456 Park Ave", city: "Delhi", state: "Delhi" },
+  hobbies: ["Music", "Sports"]
+});
+
+bulk.insert({
+  rno: 3,
+  class: "TYBBA_CA",
+  fname: "Priya",
+  lname: "Gupta",
+  age: 21,
+  address: { street: "789 Elm Rd", city: "Kolkata", state: "West Bengal" },
+  hobbies: ["Dancing", "Cooking"]
+});
+
+bulk.insert({
+  rno: 4,
+  class: "FYBBA_CA",
+  fname: "Vikas",
+  lname: "Kumar",
+  age: 18,
+  address: { street: "101 Oak Lane", city: "Chennai", state: "Tamil Nadu" },
+  hobbies: ["Travel", "Photography"]
+});
+
+bulk.insert({
+  rno: 5,
+  class: "SYBBA_CA",
+  fname: "Neha",
+  lname: "Singh",
+  age: 19,
+  address: { street: "222 Pine St", city: "Hyderabad", state: "Telangana" },
+  hobbies: ["Swimming", "Reading"]
+});
+
+bulk.insert({
+  rno: 6,
+  class: "TYBBA_CA",
+  fname: "Rajesh",
+  lname: "Patel",
+  age: 22,
+  address: { street: "333 Cedar Rd", city: "Ahmedabad", state: "Gujarat" },
+  hobbies: ["Painting", "Cooking"]
+});
+
+bulk.insert({
+  rno: 7,
+  class: "FYBBA_CA",
+  fname: "Meena",
+  lname: "Shah",
+  age: 20,
+  address: { street: "444 Maple Ave", city: "Bengaluru", state: "Karnataka" },
+  hobbies: ["Music", "Dancing"]
+});
+
+bulk.insert({
+  rno: 8,
+  class: "SYBBA_CA",
+  fname: "Ajay",
+  lname: "Verma",
+  age: 18,
+  address: { street: "555 Birch Lane", city: "Pune", state: "Maharashtra" },
+  hobbies: ["Sports", "Reading"]
+});
+
+bulk.insert({
+  rno: 9,
+  class: "TYBBA_CA",
+  fname: "Pooja",
+  lname: "Mishra",
+  age: 19,
+  address: { street: "666 Cedar Rd", city: "Jaipur", state: "Rajasthan" },
+  hobbies: ["Cooking", "Photography"]
+});
+
+bulk.insert({
+  rno: 10,
+  class: "FYBBA_CA",
+  fname: "Sandeep",
+  lname: "Gupta",
+  age: 21,
+  address: { street: "777 Elm Rd", city: "Lucknow", state: "Uttar Pradesh" },
+  hobbies: ["Reading", "Music"]
+});
+
+bulk.execute();
+
+
+2) Display all documents of ‘Student’ collection in proper format.
+db.Studentl.find().pretty();
+
+------------------------ B ------------------------
+
+1) Display the total number of students in ‘TYBBA_CA’ class.
+db.Student.find({ class: "TYBBA_CA" }).count()
+
+2) Give rno, fname and lname of student who is having smallest age in class ‘SYBBA_CA’.
+db.Student.find({ class: "SYBBA_CA" }).sort({ age: 1 }).limit(1, { rno: 1, fname: 1, lname: 1 })
+
+3) Add one more hobby ‘swimming’ at second position in the hobbies field of student having roll number 2 and class ‘TYBBA_CA’.
+db.Student.update({ rno: 2, class: "TYBBA_CA" }, { $push: { hobbies: { $each: ["swimming"], $position: 1 } } })
+
+4) Rename the name of ‘fname’ field to ‘firstname’ and ‘lname’ to ‘lastname’ in all the student documents having age greater than or equal to 18.
+db.Student.update({ age: { $gte: 18 } }, { $rename: { fname: "firstname", lname: "lastname" } }, { multi: true })
+
+5) Insert a new field ‘percentage’ in the student document having class ‘TYBBA_CA’ and roll number 1.
+>>>>>>> 46e777ba1421c89223bdcdc2533d0856a4305a72
 db.Student.update({ rno: 1, class: "TYBBA_CA" }, { $set: { percentage: 85.5 } })
