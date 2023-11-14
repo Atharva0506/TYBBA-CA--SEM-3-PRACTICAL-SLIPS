@@ -1,4 +1,3 @@
-// Slip 1 A) Write a ‘java’ program to display characters from ‘A’ to ‘Z’.
 
 class Slip1A{
 
