@@ -7,10 +7,10 @@ public class Slip28a {
                 int number = Integer.parseInt(arg);
                 count++;
             } catch (NumberFormatException e) {
-                // Ignore non-integer arguments
-            }
+            
         }
 
         System.out.println("Number of integers in the list: " + count);
     }
+}
 }

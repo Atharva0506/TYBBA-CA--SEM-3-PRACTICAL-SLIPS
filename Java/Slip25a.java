@@ -12,6 +12,7 @@ public class Slip25a {
         } else {
             System.out.println("The string is not a palindrome.");
         }
+        scanner.close();
     }
 
     public static boolean isPalindrome(String str) {

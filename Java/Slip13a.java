@@ -21,5 +21,6 @@ public class Slip13a {
         for (int i = numbers.size() - 1; i >= 0; i--) {
             System.out.println(numbers.get(i));
         }
+        scanner.close();
     }
 }

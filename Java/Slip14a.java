@@ -12,6 +12,7 @@ public class Slip14a {
 
         double result = calculatePower(base, exponent);
         System.out.println(base + " raised to the power of " + exponent + " is " + result);
+        scanner.close();
     }
 
     public static double calculatePower(double base, int exponent) {

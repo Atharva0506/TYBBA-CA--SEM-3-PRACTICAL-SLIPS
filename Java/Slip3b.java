@@ -6,9 +6,6 @@ abstract class Shape {
     abstract double volume(double r, double h);
 }
 
-/**
- * Cone
- */
 class Cone extends Shape {
     @Override
     double area(double r, double h) {

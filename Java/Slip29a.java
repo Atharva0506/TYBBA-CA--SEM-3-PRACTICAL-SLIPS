@@ -19,6 +19,7 @@ public class Slip29a {
         } catch (Exception e) {
             System.err.println("System Exception: " + e.getMessage());
         }
+        scanner.close();
     }
 
     public static void checkEligibility(int age) throws AgeException {

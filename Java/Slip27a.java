@@ -17,6 +17,7 @@ public class Slip27a {
         } catch (NumberOutOfRangeException e) {
             System.err.println("Error: " + e.getMessage());
         }
+        scanner.close();
     }
 
     public static void displayFactors(int number) throws NumberOutOfRangeException {

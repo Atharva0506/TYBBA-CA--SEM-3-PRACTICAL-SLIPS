@@ -41,6 +41,7 @@ public class Slip18a {
                     System.out.println("Invalid choice. Please choose a valid option.");
             }
         } while (choice != 4);
+        scanner.close();
     }
 
     public static double calculateCircleArea(double radius) {

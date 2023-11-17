@@ -13,6 +13,7 @@ public class Slip16a {
             int sum = calculateSumOfDigits(number);
             System.out.println("Sum of digits: " + sum);
         }
+        scanner.close();
     }
 
     public static int calculateSumOfDigits(long number) {

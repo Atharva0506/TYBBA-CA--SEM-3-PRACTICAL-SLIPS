@@ -13,13 +13,14 @@ public class Slip22a {
             long factorial = calculateFactorial(number);
             System.out.println("Factorial of " + number + " is " + factorial);
         }
+        scanner.close();
     }
 
     public static long calculateFactorial(int n) {
         if (n == 0 || n == 1) {
-            return 1; // Base case: factorial of 0 and 1 is 1
+            return 1; 
         } else {
-            return n * calculateFactorial(n - 1); // Recursive calculation
+            return n * calculateFactorial(n - 1); 
         }
     }
 }

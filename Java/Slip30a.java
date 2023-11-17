@@ -19,6 +19,7 @@ public class Slip30a {
         } catch (NumberFormatException e) {
             System.err.println("Number is Invalid: " + e.getMessage());
         }
+        scanner.close();
     }
 
     public static void checkNumber(String input) throws ZeroException {

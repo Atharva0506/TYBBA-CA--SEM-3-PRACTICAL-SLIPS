@@ -17,14 +17,15 @@ public class Slip15a {
         } else {
             System.out.println("Name not found in the array.");
         }
+        scanner.close();
     }
 
     public static int searchName(String[] array, String name) {
         for (int i = 0; i < array.length; i++) {
             if (array[i].equals(name)) {
-                return i; // Name found, return its index
+                return i;
             }
         }
-        return -1; // Name not found in the array
+        return -1; 
     }
 }
