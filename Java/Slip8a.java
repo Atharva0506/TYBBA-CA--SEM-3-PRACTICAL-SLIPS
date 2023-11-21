@@ -1,5 +1,3 @@
-// A) Define an Interface Shape with abstract method area(). Write a java program to
-// calculate an area of Circle and Sphere.(use final keyword)
 interface Shape {
     double area();
 }
