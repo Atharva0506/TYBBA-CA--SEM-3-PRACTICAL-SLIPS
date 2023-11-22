@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Slip26a {
     public static void main(String[] args) {
-        String fileName = "input.txt";  // Replace with the path to your file
+        String fileName = "input.txt"; 
 
         try (FileReader fileReader = new FileReader(fileName);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {

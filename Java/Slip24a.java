@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Slip24a {
     public static void main(String[] args) {
-        String fileName = "input.txt";  // Replace with the path to your file
+        String fileName = "input.txt";  
 
         int charCount = 0;
         int digitCount = 0;

@@ -22,13 +22,13 @@ public class Slip25a {
 
         while (left < right) {
             if (str.charAt(left) != str.charAt(right)) {
-                return false; // If characters don't match, it's not a palindrome
+                return false; 
             }
 
             left++;
             right--;
         }
 
-        return true; // All characters matched, it's a palindrome
+        return true; 
     }
 }

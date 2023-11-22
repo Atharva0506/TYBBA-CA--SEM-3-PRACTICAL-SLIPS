@@ -1,14 +1,16 @@
+import java.awt.Color;
+
 import javax.swing.*;
 
 
 public class Slip23b extends JFrame {
     public Slip23b() {
-        setTitle("Swing Menu Example");
+        setTitle("Menu");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JMenuBar menuBar = new JMenuBar();
-
+        menuBar.setBackground(Color.GRAY);
         JMenu fileMenu = new JMenu("File");
 
         JMenu editMenu = new JMenu("Edit");
