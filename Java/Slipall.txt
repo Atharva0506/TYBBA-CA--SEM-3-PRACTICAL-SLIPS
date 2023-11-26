@@ -1,45 +1,3 @@
-========== CombineJavaFiles.java ==========
-import java.io.*;
-
-public class CombineJavaFiles {
-    public static void main(String[] args) {
-        // Get the current directory
-        String currentDirectory = System.getProperty("user.dir");
-
-        // Create the output file
-        String outputFile = currentDirectory + File.separator + "all.txt";
-
-        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
-            // List all files in the current directory
-            File dir = new File(currentDirectory);
-            File[] files = dir.listFiles((dir1, name) -> name.toLowerCase().endsWith(".java"));
-
-            if (files != null) {
-                // Iterate through each Java file
-                for (File file : files) {
-                    // Write the content of each Java file to the output file
-                    writer.println("========== " + file.getName() + " ==========");
-                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            writer.println(line);
-                        }
-                    }
-                    // Add a separator line after each file
-                    writer.println("\n");
-                }
-                System.out.println("Files combined successfully. Output file: " + outputFile);
-            } else {
-                System.out.println("No Java files found in the current directory.");
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-
 ========== Slip10a.java ==========
 // A) Write a java program to count the frequency of each character in a given string.
 
@@ -194,6 +152,13 @@ public class Slip10b {
 
 
 ========== Slip11a.java ==========
+// Write a menu driven java program using command line arguments for the 
+following: [15 M]
+ 1. Addition 
+ 2. Subtraction
+ 3. Multiplication 
+ 4. Division
+
 public class Slip11a {
     public static void main(String[] args) {
         if (args.length < 3) {
@@ -294,6 +259,8 @@ public class Slip11b {
 
 
 ========== Slip12a.java ==========
+//Write a java program to display each String in reverse order from a String array.
+
 public class Slip12a {
     public static void main(String[] args) {
         // Sample string array
@@ -373,6 +340,9 @@ public class Slip12b {
 
 
 ========== Slip13a.java ==========
+//Write a java program to accept ‘n’ integers from the user & store them in an 
+ArrayList collection. Display the elements of ArrayList collection in reverse order.
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -417,6 +387,7 @@ public class Slip13b {
 
 
 ========== Slip14a.java ==========
+//Write a Java program to calculate power of a number using recursion
 import java.util.Scanner;
 
 public class Slip14a {
@@ -525,6 +496,9 @@ public class Slip14b {
 
 
 ========== Slip15a.java ==========
+//Write a java program to search given name into the array, if it is found then display 
+its index otherwise display appropriate message.
+
 import java.util.Scanner;
 
 public class Slip15a {
@@ -597,6 +571,8 @@ public class Slip15b {
 
 
 ========== Slip16a.java ==========
+//Write a java program to calculate sum of digits of a given number using recursion.
+
 import java.util.Scanner;
 
 public class Slip16a {
@@ -617,9 +593,9 @@ public class Slip16a {
 
     public static int calculateSumOfDigits(long number) {
         if (number == 0) {
-            return 0; // Base case: when there are no more digits
+            return 0; 
         } else {
-            return (int)(number % 10) + calculateSumOfDigits(number / 10);
+            return (number % 10) + calculateSumOfDigits(number / 10);
         }
     }
 }
@@ -669,13 +645,12 @@ public class Slip16b {
 
 
 ========== Slip17a.java ==========
+//Write a java Program to accept ‘n’ no’s through command line and store only 
+armstrong no’s into the array and display that array.
+
 public class Slip17a {
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.out.println("Usage: java Slip17a <number1> <number2> <number3> ...");
-            return;
-        }
-
+       
         int n = args.length;
         int[] numbers = new int[n];
         int armstrongCount = 0;
@@ -790,6 +765,9 @@ public class Slip17b {
 
 
 ========== Slip18a.java ==========
+//Write a Java program to calculate area of Circle, Triangle & Rectangle.(Use Method 
+Overloading) 
+
 import java.util.Scanner;
 
 public class Slip18a {
@@ -900,6 +878,7 @@ public class Slip18b {
 
 
 ========== Slip19a.java ==========
+//Write a Java program to display Fibonacci series using function
 public class Slip19a {
     public static void main(String[] args) {
         int n = 10; 
@@ -1109,12 +1088,13 @@ public class Slip20b {
 
 
 ========== Slip21a.java ==========
+// Write a java program to display each word from a file in reverse order.
 import java.io.*;
 
 
 public class Slip21a {
     public static void main(String[] args) {
-        String fileName = "input.txt"; // Hardcoded file name
+        String fileName = "input.txt"; 
 
         try (FileReader fileReader = new FileReader(fileName);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
@@ -1190,6 +1170,7 @@ public class Slip21b {
 
 
 ========== Slip22a.java ==========
+//Write a Java program to calculate factorial of a number using recursion.
 import java.util.Scanner;
 
 public class Slip22a {
@@ -1282,11 +1263,14 @@ public class Slip22b {
 
 
 ========== Slip23a.java ==========
+//Write a java program to check whether given file is hidden or not. If not then 
+ display its path, otherwise display appropriate message.
+
 import java.io.File;
 
 public class Slip23a {
     public static void main(String[] args) {
-        String filePath = "input.txt";  // Replace with the path of the file you want to check
+        String filePath = "input.txt"; 
 
         File file = new File(filePath);
 
@@ -1361,6 +1345,7 @@ public class Slip23b extends JFrame {
 
 
 ========== Slip24a.java ==========
+//Write a java program to count number of digits, spaces and characters from a file.
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -1482,6 +1467,7 @@ public class Slip24b {
 
 
 ========== Slip25a.java ==========
+//Write a java program to check whether given string is palindrome or not
 import java.util.Scanner;
 
 public class Slip25a {
@@ -1587,6 +1573,7 @@ public class Slip25b {
 
 
 ========== Slip26a.java ==========
+//Write a java program to display ASCII values of the characters from a file
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -1629,6 +1616,9 @@ public class Slip26b {
             g.drawLine(150,100,100,150);
             g.drawLine(150,100,190,150);
             g.drawLine(150,50,150,100);
+            Color c = new Color(255, 100, 0);
+            g.setColor(c);
+            g.fillRect(150, 50, 20, 20);
             g.drawRect(150,50,20,20);
             }
         };
@@ -1642,6 +1632,10 @@ public class Slip26b {
 
 
 ========== Slip27a.java ==========
+//Write a java program to accept a number from user, If it is greater than 1000 then 
+throw user defined exception “Number is out of Range” otherwise display the factors of 
+that number. (Use static keyword)
+
 import java.util.Scanner;
 
 class NumberOutOfRangeException extends Exception {
@@ -1759,6 +1753,8 @@ public class Slip27b extends JFrame {
 
 
 ========== Slip28a.java ==========
+ //write a java program to count the number of integers from a given list. (Use 
+ Command line arguments)
 public class Slip28a {
     public static void main(String[] args) {
         int count = 0;
@@ -1858,6 +1854,9 @@ public class Slip28b extends JFrame {
 
 
 ========== Slip29a.java ==========
+//Write a java program to check whether given candidate is eligible for voting or not. 
+Handle user defined as well as system defined Exception. 
+
 import java.util.Scanner;
 
 class AgeException extends Exception {
@@ -2045,6 +2044,10 @@ public class Slip2b {
 
 
 ========== Slip30a.java ==========
+//Write a java program to accept a number from a user, if it is zero then throw user 
+defined Exception “Number is Zero”. If it is non-numeric then generate an error 
+“Number is Invalid” otherwise check whether it is palindrome or not.
+
 import java.util.Scanner;
 
 class ZeroException extends Exception {
@@ -2223,12 +2226,6 @@ public class Slip30b extends JFrame {
 }
 
 
-========== Slip31.java ==========
-class Slip31{
-	public static void main(String[] arg){
-		System.out.println("Heloo")
-	}
-}
 
 
 ========== Slip3a.java ==========
@@ -2799,6 +2796,9 @@ public class Slip7b {
 
 
 ========== Slip8a.java ==========
+//Define an Interface Shape with abstract method area(). Write a java program to 
+calculate an area of Circle and Sphere.(use final keyword)
+
 interface Shape {
     double area();
 }

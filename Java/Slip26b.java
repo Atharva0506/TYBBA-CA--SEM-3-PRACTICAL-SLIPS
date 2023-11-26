@@ -11,13 +11,31 @@ public class Slip26b {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+                
+                g.drawRect(100, 150, 90, 120);
+                g.drawRect(130, 230, 20, 40);
+                g.drawLine(150, 100, 100, 150);
+                g.drawLine(150, 100, 190, 150);
+                g.drawLine(150, 50, 150, 100);
+                g.drawLine(150, 50, 190, 60);
+                g.drawLine(190, 60, 150, 70);
+                //x:[150,190,150]
+                //y:[50,60,70]
+                
+                Color c = new Color(255, 100, 0);
+                g.setColor(c);
+                int[] xPoints = { 150, 190, 150 };
+                int[] yPoints = { 50, 60, 70 };
+                int nPoints = 3;
+                g.fillPolygon(xPoints, yPoints, nPoints);
 
-            g.drawRect(100,150,90,120);
-            g.drawRect(130,230,20,40);
-            g.drawLine(150,100,100,150);
-            g.drawLine(150,100,190,150);
-            g.drawLine(150,50,150,100);
-            g.drawRect(150,50,20,20);
+                // Fill the polygon with a color
+               
+                // g.drawRect(150,50,20,20);
+
+                // Color c = new Color(255, 100, 0);
+                // g.setColor(c);
+                // g.fillRect(150, 50, 20, 20);
             }
         };
 

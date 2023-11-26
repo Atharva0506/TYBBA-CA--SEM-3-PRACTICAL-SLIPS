@@ -20,12 +20,15 @@ public class Slip30b extends JFrame {
     }
 
     private void initializeUI() {
-        JPanel mainPanel = new JPanel(new GridLayout(9, 2, 3, 5));
+    JPanel mainPanel = new JPanel(new GridLayout(9, 2, 3, 5));
 
-        JLabel headingLabel = new JLabel("<html><div style='text-align: center; font-weight: bold; text-decoration: underline;'>Personal Information</div></html>");
-        
-        mainPanel.add(headingLabel);
-        mainPanel.add(new JLabel()); 
+    JPanel headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    JLabel headingLabel = new JLabel("Personal Information");
+    
+    headingPanel.add(headingLabel);
+
+    mainPanel.add(headingPanel);
+    mainPanel.add(new JLabel());
 
         mainPanel.add(new JLabel("First Name:"));
         firstNameField = new JTextField();
