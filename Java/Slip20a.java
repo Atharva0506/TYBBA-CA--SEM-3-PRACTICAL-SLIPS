@@ -1,3 +1,8 @@
+/*
+ Write a java program using AWT to create a Frame with title “TYBBACA”, 
+background color RED. If user clicks on close button then frame should close
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 
