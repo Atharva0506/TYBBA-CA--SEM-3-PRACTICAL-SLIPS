@@ -1,0 +1,1892 @@
+
+
+========== Slip1.txt ==========
+------------------------ A_------------------------
+Q1)
+db.films.insertMany([
+  {
+    title: "Jurassic Park",
+    director: "Steven Spielberg",
+    release_year: 1993,
+    language: "English",
+    film_type: ["Action", "Adventure"],
+    actors: ["Sam Neill", "Laura Dern", "Jeff Goldblum"]
+  },
+  {
+    title: "The Matrix",
+    director: "Lana Wachowski",
+    release_year: 1999,
+    language: "English",
+    film_type: ["Action", "Science Fiction"],
+    actors: ["Keanu Reeves", "Carrie-Anne Moss", "Hugo Weaving"]
+  },
+  {
+    title: "Inception",
+    director: "Christopher Nolan",
+    release_year: 2010,
+    language: "English",
+    film_type: ["Action", "Science Fiction"],
+    actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"]
+  },
+  {
+    title: "Avatar",
+    director: "James Cameron",
+    release_year: 2009,
+    language: "English",
+    film_type: ["Action", "Adventure", "Science Fiction"],
+    actors: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"]
+  },
+  {
+    title: "The Dark Knight",
+    director: "Christopher Nolan",
+    release_year: 2008,
+    language: "English",
+    film_type: ["Action", "Crime", "Drama"],
+    actors: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"]
+  },
+  {
+    title: "Interstellar",
+    director: "Christopher Nolan",
+    release_year: 2014,
+    language: "English",
+    film_type: ["Adventure", "Drama", "Sci-Fi"],
+    actors: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"]
+  },
+  {
+    title: "Gladiator",
+    director: "Ridley Scott",
+    release_year: 2000,
+    language: "English",
+    film_type: ["Action", "Adventure", "Drama"],
+    actors: ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"]
+  },
+  {
+    title: "Dilwale Dulhania Le Jayenge",
+    director: "Aditya Chopra",
+    release_year: 1995,
+    language: "Hindi",
+    film_type: ["Romance", "Drama"],
+    actors: ["Shah Rukh Khan", "Kajol", "Amrish Puri"]
+  },
+  {
+    title: "Lagaan",
+    director: "Ashutosh Gowariker",
+    release_year: 2001,
+    language: "Hindi",
+    film_type: ["Drama", "Musical"],
+    actors: ["Aamir Khan", "Gracy Singh", "Rachel Shelley"]
+  },
+  {
+    title: "Sholay",
+    director: "Ramesh Sippy",
+    release_year: 1975,
+    language: "Hindi",
+    film_type: ["Action", "Adventure", "Drama"],
+    actors: ["Dharmendra", "Amitabh Bachchan", "Sanjeev Kumar"]
+  },
+  {
+    title: "3 Idiots",
+    director: "Rajkumar Hirani",
+    release_year: 2009,
+    language: "Hindi",
+    film_type: ["Comedy", "Drama"],
+    actors: ["Aamir Khan", "Kareena Kapoor", "R. Madhavan"]
+  },
+  {
+    title: "PK",
+    director: "Rajkumar Hirani",
+    release_year: 2014,
+    language: "Hindi",
+    film_type: ["Comedy", "Drama", "Sci-Fi"],
+    actors: ["Aamir Khan", "Anushka Sharma", "Sushant Singh Rajput"]
+  }
+])
+
+
+Q2) db.films.find({}).pretty()
+
+
+------------------------ B ------------------------
+
+Q1) db.films.find({language: "English", release_year: { $lt: 2000 }})
+
+Q2) db.films.find({film_type: "Action"title: { $regex: /^K/i } }, { _id: 0, title: 1, release_year: 1 })
+
+Q3) db.films.find({ language: "Hindi" },{ _id: 0, title: 1, release_year: 1 }).sort({ release_year: -1 }).limit(5)
+
+Q4) db.films.count({actors: { $nin: ["Akshay Kumar"] }});
+
+Q5) db.films.updateOne({ title: "Jungle Book" },{ $set: { release_year: 2016 } })
+
+
+========== Slip10.txt ==========
+------------------------ A ------------------------
+Create a 'Person' collection of documents with the following fields:
+
+{pname: "….", contact_no: …. , city: "….", profession: ["….","…."],
+cars:[{model: "….", year: ….,price: …. }, …. ]}
+
+db.createCollection("Person");
+
+1) Insert at least 10 documents in a collection, use bulk insert.
+
+var bulk = db.Person.initializeUnorderedBulkOp();
+bulk.insert({
+    pname: "Rahul Sharma",
+    contact_no: "9876543210",
+    city: "Mumbai",
+    profession: ["Engineer", "Artist"],
+    cars: [
+        { model: "Honda City", year: 2021, price: 1500000 },
+        { model: "Maruti Swift", year: 2019, price: 600000 }
+    ]
+});
+bulk.insert({
+pname: "Neha Kapoor",
+contact_no: "8765432109",
+city: "Delhi",
+profession: ["Doctor", "Teacher"],
+cars: [
+    { model: "Toyota Corolla", year: 2020, price: 1800000 }
+]
+});
+bulk.insert({
+pname: "Amit Singh",
+contact_no: "7654321098",
+city: "Pune",
+profession: ["Software Developer"],
+cars: [
+    { model: "Ford F-150", year: 2018, price: 2500000 },
+    { model: "Hyundai Tucson", year: 2022, price: 2200000 },
+    { model: "Tata Nano", year: 2019, price: 1200000 }
+]
+});
+bulk.insert({
+pname: "Rajesh Verma",
+contact_no: "6543210987",
+city: "Chennai",
+profession: ["Chef"],
+cars: [
+    { model: "Volkswagen Golf", year: 2019, price: 1600000 }
+]
+});
+bulk.insert({
+pname: "Sneha Gupta",
+contact_no: "5432109876",
+city: "Kolkata",
+profession: ["Lawyer", "Consultant"],
+cars: [
+    { model: "Nissan Altima", year: 2020, price: 1400000 }
+]
+});
+bulk.insert({
+pname: "Alok Choudhary",
+contact_no: "4321098765",
+city: "Mumbai",
+profession: ["Architect", "Designer"],
+cars: [
+    { model: "Audi A6", year: 2021, price: 2800000 },
+    { model: "Mazda CX-5", year: 2022, price: 2300000 }
+]
+});
+bulk.insert({
+pname: "Mrs. Mahajan",
+contact_no: "3210987654",
+city: "Chinchwad",
+profession: ["Homemaker"],
+cars: [
+    { model: "Chevrolet Cruze", year: 2019, price: 1700000 }
+]
+});
+bulk.insert({
+pname: "Vikas Patel",
+contact_no: "2109876543",
+city: "Delhi",
+profession: ["Engineer", "Entrepreneur"],
+cars: [
+    { model: "BMW 3 Series", year: 2021, price: 3200000 }
+]
+});
+bulk.insert({
+pname: "Anita Roy",
+contact_no: "1098765432",
+city: "Kolkata",
+profession: ["Journalist"],
+cars: [
+    { model: "Honda Civic", year: 2020, price: 1900000 }
+]
+});
+bulk.insert({
+pname: "Avinash Sharma",
+contact_no: "0987654321",
+city: "Mumbai",
+profession: ["Doctor", "Researcher"],
+cars: [
+    { model: "Toyota Camry", year: 2019, price: 2000000 }
+]
+});
+bulk.execute();
+
+2) Display all documents of ‘Person’ collection in proper format.
+db.Person.find().pretty();
+
+------------------------ B ------------------------
+
+1) Display the name and contact number of person having 3 cars.
+db.Person.find({"cars":{$size:3}});
+
+2) Display different cities from which persons belong.
+db.Person.distinct("city")
+
+3) Create an index using the ‘pname’ field and name it as ‘Person Name Index’.
+db.Person.createIndex({ pname: 1 }, { name: "Person Name Index" })
+
+4) Delete the first person document whose city is ‘Chinchwad’.
+db.Person.findOneAndDelete({ city: "Chinchwad" })
+
+5) Update Person document whose name is “Mrs. Mahajan�? while updating add only those professions which are not already exists in her profession field.
+db.Person.update(
+  { pname: "Mrs. Mahajan" },
+  { $addToSet: { profession: "New Profession" } }
+)
+
+
+========== Slip11.txt ==========
+
+------------------------ A ------------------------
+Create a ‘Company’ collection of documents with the following fields:
+
+{ 
+    company_id:1,
+    company_name:"Apple",
+    contact_details:{ address: "Cupertino, CA 95014", phone: "1-408-996-1010"},
+    products:[
+        {code: "A-123", name:"IPhone 7", price: 29,900},
+        {code: "A-456", name: "IPadPro", price: 37,900}
+    ],
+    rating:5
+}
+
+db.createCollection("Company");
+
+1) Insert at least 10 documents in a collection.
+db.Company.insertMany([
+  {
+    company_id: 1,
+    company_name: "Apple",
+    contact_details: { address: "Cupertino, CA 95014", phone: "1-408-996-1010" },
+    products: [
+      { code: "A-123", name: "IPhone 7", price: 29900 },
+      { code: "A-456", name: "IPadPro", price: 37900 }
+    ],
+    rating: 5
+  },
+  {
+    company_id: 2,
+    company_name: "Samsung",
+    contact_details: { address: "Seoul, South Korea", phone: "1-800-726-7864" },
+    products: [
+      { code: "S-789", name: "Galaxy S21", price: 36900 },
+      { code: "S-654", name: "Galaxy Tab S7", price: 24900 }
+    ],
+    rating: 4
+  },
+  {
+    company_id: 3,
+    company_name: "Xiaomi",
+    contact_details: { address: "Beijing, China", phone: "1-888-874-7262" },
+    products: [
+      { code: "X-123", name: "Redmi Note 10", price: 15999 },
+      { code: "X-456", name: "Mi Pad 5", price: 22999 }
+    ],
+    rating: 4
+  },
+  {
+    company_id: 4,
+    company_name: "OnePlus",
+    contact_details: { address: "Shenzhen, China", phone: "1-844-323-7732" },
+    products: [
+      { code: "O-789", name: "OnePlus 9 Pro", price: 49999 },
+      { code: "O-654", name: "OnePlus 9R", price: 39999 }
+    ],
+    rating: 4
+  },
+  {
+    company_id: 5,
+    company_name: "Realme",
+    contact_details: { address: "Noida, India", phone: "1-800-102-9987" },
+    products: [
+      { code: "R-123", name: "Realme 8", price: 14999 },
+      { code: "R-456", name: "Realme C21", price: 9999 }
+    ],
+    rating: 3
+  },
+  {
+    company_id: 6,
+    company_name: "Vivo",
+    contact_details: { address: "Guangdong, China", phone: "1-800-266-6686" },
+    products: [
+      { code: "V-123", name: "Vivo V21", price: 25990 },
+      { code: "V-456", name: "Vivo Y20G", price: 12990 }
+    ],
+    rating: 3
+  },
+  {
+    company_id: 7,
+    company_name: "Oppo",
+    contact_details: { address: "Shenzhen, China", phone: "1-800-103-6286" },
+    products: [
+      { code: "O-123", name: "Oppo F19 Pro", price: 21990 },
+      { code: "O-456", name: "Oppo A53s", price: 11990 }
+    ],
+    rating: 4
+  },
+  {
+    company_id: 8,
+    company_name: "Nokia",
+    contact_details: { address: "Espoo, Finland", phone: "1-800-425-3388" },
+    products: [
+      { code: "N-123", name: "Nokia 5.4", price: 13999 },
+      { code: "N-456", name: "Nokia 3.4", price: 10999 }
+    ],
+    rating: 3
+  },
+  {
+    company_id: 9,
+    company_name: "Micromax",
+    contact_details: { address: "Gurugram, India", phone: "1-800-102-3727" },
+    products: [
+      { code: "M-123", name: "Micromax IN Note 1", price: 12499 },
+      { code: "M-456", name: "Micromax IN 1", price: 7999 }
+    ],
+    rating: 3
+  },
+  {
+    company_id: 10,
+    company_name: "Sony",
+    contact_details: { address: "Tokyo, Japan", phone: "1-800-222-7669" },
+    products: [
+      { code: "S-123", name: "Sony Xperia 1 III", price: 69990 },
+      { code: "S-456", name: "Sony Bravia OLED TV", price: 149990 }
+    ],
+    rating: 4
+  }
+]);
+
+
+2) Display all documents of ‘Company’ collection in proper format.
+db.Company.find().pretty();
+
+------------------------ B ------------------------
+
+1) Count number of mobile companies whose name ends with letter ‘o’.
+db.Company.find({ company_name: /o$/i }).count()
+
+2) Sort the company collection in descending order of their id.
+db.Company.find().sort({ company_id: -1 })
+
+3) Give address and phone number of ‘Samsung’ company.
+db.Company.findOne({ company_name: "Samsung" }, { _id: 0, "contact_details.address": 1, "contact_details.phone": 1 })
+
+4) Update the price of the ‘IPhone 7’ to 32,900.
+db.Company.update({ "products.name": "IPhone 7" }, { $set: { "products.$.price": 32900 } })
+
+5) Display details of company whose ‘rating’ is specified.
+db.Company.find({ rating: 4 })
+
+
+
+========== Slip12.txt ==========
+
+------------------------ A ------------------------
+
+Create a ‘Customer’ collection of documents with the following fields:
+{ 
+    Cust_id: 1,
+    Cust_name: "Mr. Joshi",
+    address:{city: "Pune", street: "S. B. Road"},
+    orders: [
+        { 
+            id:101,
+            orderItems:[
+                { productId: 8, price: 560, productName: "keyboard"},
+                ...
+                ],
+        },
+    ...
+    ]
+}
+
+db.createCollection("Customer");
+
+1) Insert at least 10 documents in a collection.
+db.Customer.insertMany([
+  {
+    Cust_id: 1,
+    Cust_name: "Mr. Joshi",
+    address: { city: "Pune", street: "S. B. Road" },
+    orders: [
+      {
+        id: 101,
+        orderItems: [
+          { productId: 8, price: 560, productName: "keyboard" },
+          { productId: 12, price: 320, productName: "mouse" }
+        ]
+      },
+      {
+        id: 102,
+        orderItems: [
+          { productId: 7, price: 2200, productName: "laptop" },
+          { productId: 13, price: 200, productName: "printer" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 2,
+    Cust_name: "Mrs. Gupta",
+    address: { city: "Mumbai", street: "Juhu" },
+    orders: [
+      {
+        id: 103,
+        orderItems: [
+          { productId: 10, price: 150, productName: "headphones" },
+          { productId: 15, price: 9000, productName: "smartphone" },
+          { productId: 16, price: 400, productName: "charger" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 3,
+    Cust_name: "Dr. Reddy",
+    address: { city: "Hyderabad", street: "Banjara Hills" },
+    orders: [
+      {
+        id: 104,
+        orderItems: [
+          { productId: 9, price: 450, productName: "monitor" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 4,
+    Cust_name: "Mr. Kumar",
+    address: { city: "Delhi", street: "Connaught Place" },
+    orders: [
+      {
+        id: 105,
+        orderItems: [
+          { productId: 11, price: 650, productName: "gaming console" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 5,
+    Cust_name: "Mrs. Sharma",
+    address: { city: "Kolkata", street: "Park Street" },
+    orders: [
+      {
+        id: 106,
+        orderItems: [
+          { productId: 14, price: 280, productName: "router" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 6,
+    Cust_name: "Mr. Patel",
+    address: { city: "Ahmedabad", street: "C. G. Road" },
+    orders: [
+      {
+        id: 107,
+        orderItems: [
+          { productId: 10, price: 150, productName: "headphones" },
+          { productId: 16, price: 400, productName: "external hard drive" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 7,
+    Cust_name: "Mrs. Khan",
+    address: { city: "Bengaluru", street: "Indiranagar" },
+    orders: [
+      {
+        id: 108,
+        orderItems: [
+          { productId: 15, price: 9000, productName: "smartphone" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 8,
+    Cust_name: "Dr. Verma",
+    address: { city: "Chennai", street: "Adyar" },
+    orders: [
+      {
+        id: 109,
+        orderItems: [
+          { productId: 11, price: 650, productName: "gaming console" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 9,
+    Cust_name: "Mr. Singh",
+    address: { city: "Lucknow", street: "Hazratganj" },
+    orders: [
+      {
+        id: 110,
+        orderItems: [
+          { productId: 14, price: 280, productName: "router" }
+        ]
+      }
+    ]
+  },
+  {
+    Cust_id: 10,
+    Cust_name: "Mrs. Devi",
+    address: { city: "Jaipur", street: "C-Scheme" },
+    orders: [
+      {
+        id: 111,
+        orderItems: [
+          { productId: 12, price: 320, productName: "mouse" },
+          { productId: 16, price: 400, productName: "external hard drive" }
+        ]
+      },
+      {
+        id: 112,
+        orderItems: [
+          { productId: 14, price: 280, productName: "router" }
+        ]
+      },
+      {
+        id: 113,
+        orderItems: [
+          { productId: 11, price: 650, productName: "gaming console" }
+        ]
+      },
+    ]
+  }
+]);
+
+
+2) Display all documents of ‘Customer’ collection in proper format.
+db.Customer.find().pretty();
+
+------------------------ B ------------------------
+
+1) Display customer details that have placed two orders.
+db.Customer.find({"orders":{$size:3}});
+
+2) Replace the document having id 3 with a new document.
+db.Customer.replaceOne({ Cust_id: 3 }, {
+  Cust_id: 3,
+  Cust_name: "Dr. Rajesh",
+  address: { city: "Bangalore", street: "MG Road" },
+  orders: [
+    {
+      id: 112,
+      orderItems: [
+        { productId: 17, price: 199, productName: "keyboard" }
+      ]
+    }
+  ]
+})
+
+
+3) Increment the price of ‘keyboard’ by Rs. 100.
+db.Customer.update({ "orders.orderItems.productName": "keyboard" }, { $inc: { "orders.$[i].orderItems.$[j].price": 100 } }, { arrayFilters: [{ "i.productName": "keyboard" }, { "j.productName": "keyboard" }] })
+
+
+4) Add one more product in an order having order id 101, which is placed by “Mr.Joshi�?.
+db.Customer.update({ Cust_name: "Mr. Joshi", "orders.id": 101 }, { $push: { "orders.$.orderItems": { productId: 18, price: 299, productName: "monitor" } } })
+
+5) Display all the documents having customer id greater than or equal to 4. (Usecursor)
+var cursor = db.Customer.find({ Cust_id: { $gte: 4 } });
+
+
+========== Slip13.txt ==========
+
+------------------------ A ------------------------
+
+Create a ‘Student’ collection of documents with the following fields: [15 M]
+{
+    rno: …., class: "….",
+    fname: "….", lname: "….",
+    age: …., address:{street: "….", city: "….", state: "…."},
+    hobbies: ["….","…."]
+}
+
+db.createCollection("Student");
+
+1) Insert at least 10 documents in a collection, use bulk insert.
+var bulk = db.Student.initializeUnorderedBulkOp();
+
+bulk.insert({
+  rno: 1,
+  class: "FYBBA_CA",
+  fname: "Amit",
+  lname: "Verma",
+  age: 19,
+  address: { street: "123 Main St", city: "Mumbai", state: "Maharashtra" },
+  hobbies: ["Reading", "Painting"]
+});
+
+bulk.insert({
+  rno: 2,
+  class: "SYBBA_CA",
+  fname: "Rahul",
+  lname: "Sharma",
+  age: 20,
+  address: { street: "456 Park Ave", city: "Delhi", state: "Delhi" },
+  hobbies: ["Music", "Sports"]
+});
+
+bulk.insert({
+  rno: 3,
+  class: "TYBBA_CA",
+  fname: "Priya",
+  lname: "Gupta",
+  age: 21,
+  address: { street: "789 Elm Rd", city: "Kolkata", state: "West Bengal" },
+  hobbies: ["Dancing", "Cooking"]
+});
+
+bulk.insert({
+  rno: 4,
+  class: "FYBBA_CA",
+  fname: "Vikas",
+  lname: "Kumar",
+  age: 18,
+  address: { street: "101 Oak Lane", city: "Chennai", state: "Tamil Nadu" },
+  hobbies: ["Travel", "Photography"]
+});
+
+bulk.insert({
+  rno: 5,
+  class: "SYBBA_CA",
+  fname: "Neha",
+  lname: "Singh",
+  age: 19,
+  address: { street: "222 Pine St", city: "Hyderabad", state: "Telangana" },
+  hobbies: ["Swimming", "Reading"]
+});
+
+bulk.insert({
+  rno: 6,
+  class: "TYBBA_CA",
+  fname: "Rajesh",
+  lname: "Patel",
+  age: 22,
+  address: { street: "333 Cedar Rd", city: "Ahmedabad", state: "Gujarat" },
+  hobbies: ["Painting", "Cooking"]
+});
+
+bulk.insert({
+  rno: 7,
+  class: "FYBBA_CA",
+  fname: "Meena",
+  lname: "Shah",
+  age: 20,
+  address: { street: "444 Maple Ave", city: "Bengaluru", state: "Karnataka" },
+  hobbies: ["Music", "Dancing"]
+});
+
+bulk.insert({
+  rno: 8,
+  class: "SYBBA_CA",
+  fname: "Ajay",
+  lname: "Verma",
+  age: 18,
+  address: { street: "555 Birch Lane", city: "Pune", state: "Maharashtra" },
+  hobbies: ["Sports", "Reading"]
+});
+
+bulk.insert({
+  rno: 9,
+  class: "TYBBA_CA",
+  fname: "Pooja",
+  lname: "Mishra",
+  age: 19,
+  address: { street: "666 Cedar Rd", city: "Jaipur", state: "Rajasthan" },
+  hobbies: ["Cooking", "Photography"]
+});
+
+bulk.insert({
+  rno: 10,
+  class: "FYBBA_CA",
+  fname: "Sandeep",
+  lname: "Gupta",
+  age: 21,
+  address: { street: "777 Elm Rd", city: "Lucknow", state: "Uttar Pradesh" },
+  hobbies: ["Reading", "Music"]
+});
+
+bulk.execute();
+
+
+2) Display all documents of ‘Student’ collection in proper format.
+db.Studentl.find().pretty();
+
+------------------------ B ------------------------
+
+1) Display the total number of students in ‘TYBBA_CA’ class.
+db.Student.find({ class: "TYBBA_CA" }).count()
+
+2) Give rno, fname and lname of student who is having smallest age in class ‘SYBBA_CA’.
+db.Student.find({ class: "SYBBA_CA" }).sort({ age: 1 }).limit(1, { rno: 1, fname: 1, lname: 1 })
+
+3) Add one more hobby ‘swimming’ at second position in the hobbies field of student having roll number 2 and class ‘TYBBA_CA’.
+db.Student.update({ rno: 2, class: "TYBBA_CA" }, { $push: { hobbies: { $each: ["swimming"], $position: 1 } } })
+
+4) Rename the name of ‘fname’ field to ‘firstname’ and ‘lname’ to ‘lastname’ in all the student documents having age greater than or equal to 18.
+db.Student.update({ age: { $gte: 18 } }, { $rename: { fname: "firstname", lname: "lastname" } }, { multi: true })
+
+5) Insert a new field ‘percentage’ in the student document having class ‘TYBBA_CA’ and roll number 1.
+db.Student.update({ rno: 1, class: "TYBBA_CA" }, { $set: { percentage: 85.5 } })
+
+
+========== Slip14.txt ==========
+------------------------ A_------------------------
+Q1) db.Musicians.insertMany([
+  {
+    name: "A. R. Rahman",
+    birth_year: 1966,
+    albums: ["Album 1", "Album 2"],
+    instruments: ["Piano", "Guitar"]
+  },
+  {
+    name: "Pandit Ravi Shankar",
+    birth_year: 1920,
+    albums: ["Sitar Concerto No. 1", "Ragas & Talas"],
+    instruments: ["Sitar", "Tabla"]
+  },
+  {
+    name: "John Lennon",
+    birth_year: 1940,
+    albums: ["Imagine", "Double Fantasy"],
+    instruments: ["Vocals", "Guitar"]
+  },
+  {
+    name: "Miles Davis",
+    birth_year: 1926,
+    albums: ["Kind of Blue", "Bitches Brew"],
+    instruments: ["Trumpet", "Flugelhorn"]
+  },
+  {
+    name: "Elton John",
+    birth_year: 1947,
+    albums: ["Goodbye Yellow Brick Road", "Rocket Man"],
+    instruments: ["Piano", "Vocals"]
+  },
+  {
+    name: "Bob Dylan",
+    birth_year: 1941,
+    albums: ["The Freewheelin' Bob Dylan", "Highway 61 Revisited"],
+    instruments: ["Guitar", "Harmonica"]
+  },
+  {
+    name: "Nina Simone",
+    birth_year: 1933,
+    albums: ["I Put a Spell on You", "Feeling Good"],
+    instruments: ["Piano", "Vocals"]
+  },
+  {
+    name: "Jimi Hendrix",
+    birth_year: 1942,
+    albums: ["Are You Experienced", "Electric Ladyland"],
+    instruments: ["Guitar", "Vocals"]
+  },
+  {
+    name: "B.B. King",
+    birth_year: 1925,
+    albums: ["Live at the Regal", "Lucille"],
+    instruments: ["Guitar", "Vocals"]
+  },
+  {
+    name: "Prince",
+    birth_year: 1958,
+    albums: ["Purple Rain", "Sign o' the Times"],
+    instruments: ["Guitar", "Keyboards"]
+  }
+])
+
+Q2) db.Musicians.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Musicians.find({}, { _id: 0, name: 1 }).sort({ birth_year: -1 });
+
+Q2) db.Musicians.updateOne({ _id: 3 }, {$push: {  albums: "New Album" } })
+
+Q3) db.Musicians.updateOne({name: "A. R. Rahman"},{$set: {  occupations: ["Composer", "Singer", "Musician"] }});
+
+Q4) db.Musicians.find({ $where: "this.instruments.length === 2"}, {_id: 1, fieldname: 1});
+
+Q5) db.Musicians.updateOne({ name: "Pandit Ravi Shankar" }, { $set: {  birth_year: 1920 }});
+
+
+========== Slip15.txt ==========
+------------------------ A_------------------------
+Q1) db.Projects.insertMany([
+  {
+    proj_name: "Project A",
+    proj_manager: "Manager X",
+    start_date: new Date("2022-11-15"),
+    dur_in_month: 6,
+    emps_work_in_proj: ["Employee 1", "Employee 2"]
+  },
+  {
+    proj_name: "Project B",
+    proj_manager: "Manager Y",
+    start_date: new Date("2022-12-10"),
+    dur_in_month: 8,
+    emps_work_in_proj: ["Employee 3", "Employee 4"]
+  },
+  {
+    proj_name: "Project C",
+    proj_manager: "Manager Z",
+    start_date: new Date("2022-10-20"),
+    dur_in_month: 12,
+    emps_work_in_proj: ["Employee 5", "Employee 6"]
+  },
+  {
+    proj_name: "College Automation",
+    proj_manager: "Mr. Sumit Jadhav",
+    start_date: new Date("2023-04-05"),
+    dur_in_month: 10,
+    emps_work_in_proj: ["Employee 7", "Employee 8"]
+  },
+  {
+    proj_name: "Project D",
+    proj_manager: "Manager M",
+    start_date: new Date("2022-09-25"),
+    dur_in_month: 9,
+    emps_work_in_proj: ["Employee 9", "Employee 10"]
+  },
+  {
+    proj_name: "Project E",
+    proj_manager: "Manager N",
+    start_date: new Date("2022-08-15"),
+    dur_in_month: 7,
+    emps_work_in_proj: ["Employee 11", "Employee 12"]
+  },
+  {
+    proj_name: "Project F",
+    proj_manager: "Manager O",
+    start_date: new Date("2023-03-01"),
+    dur_in_month: 11,
+    emps_work_in_proj: ["Employee 13", "Employee 14"]
+  },
+  {
+    proj_name: "Project G",
+    proj_manager: "Manager P",
+    start_date: new Date("2023-02-10"),
+    dur_in_month: 6,
+    emps_work_in_proj: ["Employee 15", "Employee 16"]
+  },
+  {
+    proj_name: "Project H",
+    proj_manager: "Manager Q",
+    start_date: new Date("2022-07-05"),
+    dur_in_month: 5,
+    emps_work_in_proj: ["Employee 17", "Employee 18"]
+  },
+  {
+    proj_name: "Project I",
+    proj_manager: "Manager R",
+    start_date: new Date("2022-06-20"),
+    dur_in_month: 4,
+    emps_work_in_proj: ["Employee 19", "Employee 20"]
+  }
+])
+
+Q2) db.Projects.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Projects.find({ dur_in_month: { $gte: 6 }}, { _id: 0,  proj_id: 1,  proj_name: 1 });
+
+Q2) db.Projects.count({proj_manager: "Mr. Sumit Jadhav"});
+
+Q3) db.Projects.updateMany({},{  $inc: { dur_in_month: 1 } })
+
+Q4) db.Projects.updateOne({ proj_name: "College Automation"},{$push: {  emps_work_in_proj: "Mr. Mahesh Kulkarni" } })
+
+Q5) db.Projects.find({emps_work_in_proj: { $size: 4 }})
+
+
+========== Slip2.txt ==========
+------------------------ A_------------------------
+Q1)
+db.Competition.insertMany([
+  {
+    Competition_Name: "Science Fair",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["Alice", "Bob", "Carol"]
+  },
+  {
+    Competition_Name: "Soccer Tournament",
+    Competition_Type: "Sport",
+    Competition_Year: 2022,
+    students: ["David", "Eva", "Frank"]
+  },
+  {
+    Competition_Name: "Project Competition",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["Grace", "Henry", "Ivy"]
+  },
+  {
+    Competition_Name: "Basketball Championship",
+    Competition_Type: "Sport",
+    Competition_Year: 2022,
+    students: ["Jack", "Karen", "Liam"]
+  },
+  {
+    Competition_Name: "Programming Competition",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["Mia", "Noah", "Olivia"]
+  },
+  {
+    Competition_Name: "Swimming Competition",
+    Competition_Type: "Sport",
+    Competition_Year: 2022,
+    students: ["Sophia", "Thomas", "Violet"]
+  },
+  {
+    Competition_Name: "Spelling Bee",
+    Competition_Type: "Academic",
+    Competition_Year: 2021,
+    students: ["William", "Xavier", "Yara"]
+  },
+  {
+    Competition_Name: "Baseball Tournament",
+    Competition_Type: "Sport",
+    Competition_Year: 2019,
+    students: ["Zoe", "Aaron", "Bella"]
+  },
+  {
+    Competition_Name: "Robotics Competition",
+    Competition_Type: "Academic",
+    Competition_Year: 2018,
+    students: ["Carlos", "Diana", "Eli"]
+  },
+  {
+    Competition_Name: "Running",
+    Competition_Type: "Sport",
+    Competition_Year: 2019,
+    students: ["Faye", "George", "Hannah"]
+  }
+]);
+
+
+Q2) db.Competition.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Competition.find({Competition_Type: "Sport",Competition_Year: { $gte: 2018, $lte: 2019 }})
+
+Q2) db.Competition.aggregate([{
+    $match: {
+      Competition_Name: "Running",
+      Competition_Year: 2019
+    }
+  },
+  {
+    $unwind: "$students"
+  },
+  {
+    $group: {
+      _id: null,
+      studentCount: { $sum: 1 }
+    }
+  }
+]);
+
+Q3) db.Competition.updateMany(
+  {
+    Competition_Year: 2020,
+    Competition_Name: "Programming Competition"
+  },
+  {
+    $set: { Competition_Name: "Online Programming Competition" }
+  }
+);
+
+Q4) db.Competition.updateOne(
+  {
+    Competition_Year: 2021,
+    Competition_Name: "Project Competition"
+  },
+  {
+    $push: { students: "Prasad More" }
+  }
+);
+
+Q5) db.Competition.find().sort({ Competition_Year: -1 });
+
+
+========== Slip3.txt ==========
+------------------------ A_------------------------
+Q1) db.Hospital.insertMany([
+  {
+    "hospital_name": "Birla Hospital",
+    "city": "Chinchwad",
+    "specialties": ["Pediatric", "Orthopedic"],
+    "doctors": [
+      { "doctor_name": "Dr. Kadam", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Mane", "visit_day": "Tuesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 5
+  },
+  {
+    "hospital_name": "City Hospital",
+    "city": "Pune",
+    "specialties": ["Cardiology", "Neurology"],
+    "doctors": [
+      { "doctor_name": "Dr. More", "visit_day": "Wednesday" },
+      { "doctor_name": "Dr. Sharma", "visit_day": "Thursday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Sunrise Hospital",
+    "city": "Mumbai",
+    "specialties": ["Oncology", "Dermatology"],
+    "doctors": [
+      { "doctor_name": "Dr. Patel", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Shah", "visit_day": "Wednesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4
+  },
+  {
+    "hospital_name": "Greenfield Hospital",
+    "city": "Bangalore",
+    "specialties": ["ENT", "Gynecology"],
+    "doctors": [
+      { "doctor_name": "Dr. Rao", "visit_day": "Tuesday" },
+      { "doctor_name": "Dr. Kumar", "visit_day": "Friday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Lotus Hospital",
+    "city": "Delhi",
+    "specialties": ["Urology", "Dentistry"],
+    "doctors": [
+      { "doctor_name": "Dr. Verma", "visit_day": "Thursday" },
+      { "doctor_name": "Dr. Gupta", "visit_day": "Saturday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4.5
+  },
+  {
+    "hospital_name": "Unity Hospital",
+    "city": "Chennai",
+    "specialties": ["Psychiatry", "Rheumatology"],
+    "doctors": [
+      { "doctor_name": "Dr. Reddy", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Kumar", "visit_day": "Tuesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4
+  },
+  {
+    "hospital_name": "Royal Hospital",
+    "city": "Hyderabad",
+    "specialties": ["Gastroenterology", "Ophthalmology"],
+    "doctors": [
+      { "doctor_name": "Dr. Khan", "visit_day": "Wednesday" },
+      { "doctor_name": "Dr. Ali", "visit_day": "Friday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Hope Hospital",
+    "city": "Kolkata",
+    "specialties": ["Dermatology", "Pediatric"],
+    "doctors": [
+      { "doctor_name": "Dr. Das", "visit_day": "Monday" },
+      { "doctor_name": "Dr. Banerjee", "visit_day": "Wednesday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  },
+  {
+    "hospital_name": "Central Hospital",
+    "city": "Jaipur",
+    "specialties": ["Orthopedic", "Cardiology"],
+    "doctors": [
+      { "doctor_name": "Dr. Mehta", "visit_day": "Thursday" },
+      { "doctor_name": "Dr. Jain", "visit_day": "Saturday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"],
+    "rating": 4.2
+  },
+  {
+    "hospital_name": "Silverline Hospital",
+    "city": "Ahmedabad",
+    "specialties": ["Neurology", "ENT"],
+    "doctors": [
+      { "doctor_name": "Dr. Desai", "visit_day": "Tuesday" },
+      { "doctor_name": "Dr. Patel", "visit_day": "Thursday" }
+    ],
+    "services": ["laboratory", "surgical", "diagnostic", "ambulance"]
+  }
+])
+
+Q2) db.Hospital.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Hospital.find({"doctors.doctor_name": "Dr. More"})
+
+Q2) db.Hospital.find({city: "Pune"}, { _id: 0,hospital_name: 1,  specialties: 1 })
+
+Q3) db.Hospital.count({services: "ambulance"})
+
+Q4) db.Hospital.find({rating: { $exists: true }})
+
+Q5) db.Hospital.deleteMany({hospital_name: { $regex: /^P/i } });
+
+
+========== Slip4.txt ==========
+------------------------ A_------------------------
+Q1)db.Book.insertMany([
+  {
+    "Book_Title": "Definitive Guide to MongoDB",
+    "Publisher_name": "BPB",
+    "Authors": ["John Smith", "Jane Doe", "David Brown"],
+    "Language": "English",
+    "Publication_year": 2021,
+    "ISBN": "978-1234567890",
+    "price": 29.99
+  },
+  {
+    "Book_Title": "The Java Language Specification",
+    "Publisher_name": "BPB",
+    "Authors": ["Alice Johnson", "Bob Wilson", "Carol Clark"],
+    "Language": "English",
+    "Publication_year": 2020,
+    "ISBN": "978-0987654321",
+    "price": 24.99
+  },
+  {
+    "Book_Title": "Python for Beginners",
+    "Publisher_name": "O'Reilly",
+    "Authors": ["Michael Smith", "Sarah Adams"],
+    "Language": "English",
+    "Publication_year": 2019,
+    "ISBN": "978-9876543210",
+    "price": 19.99
+  },
+  {
+    "Book_Title": "Data Science Essentials",
+    "Publisher_name": "Wiley",
+    "Authors": ["Emily Johnson", "James Brown", "Sophia Miller"],
+    "Language": "English",
+    "Publication_year": 2018,
+    "ISBN": "978-8765432109",
+    "price": 34.99
+  },
+  {
+    "Book_Title": "JavaScript Mastery",
+    "Publisher_name": "BPB",
+    "Authors": ["Robert White", "Olivia Davis", "Daniel Harris"],
+    "Language": "English",
+    "Publication_year": 2022,
+    "ISBN": "978-1098765432",
+    "price": 27.99
+  },
+  {
+    "Book_Title": "Machine Learning Algorithms",
+    "Publisher_name": "O'Reilly",
+    "Authors": ["Laura Lee", "Thomas Wilson"],
+    "Language": "English",
+    "Publication_year": 2017,
+    "ISBN": "978-1234509876",
+    "price": 32.99
+  },
+  {
+    "Book_Title": "Web Development with HTML and CSS",
+    "Publisher_name": "Wiley",
+    "Authors": ["Emma Harris", "William Clark"],
+    "Language": "English",
+    "Publication_year": 2019,
+    "ISBN": "978-7654321098",
+    "price": 21.99
+  },
+  {
+    "Book_Title": "Artificial Intelligence Fundamentals",
+    "Publisher_name": "BPB",
+    "Authors": ["Sophia Adams", "Matthew Smith", "Isabella Davis"],
+    "Language": "English",
+    "Publication_year": 2020,
+    "ISBN": "978-2345678901",
+    "price": 26.99
+  },
+  {
+    "Book_Title": "C++ Programming Basics",
+    "Publisher_name": "O'Reilly",
+    "Authors": ["David Brown", "Olivia Johnson"],
+    "Language": "English",
+    "Publication_year": 2018,
+    "ISBN": "978-9876543219",
+    "price": 23.99
+  },
+  {
+    "Book_Title": "Networking Essentials",
+    "Publisher_name": "Wiley",
+    "Authors": ["Daniel Wilson", "Sarah Clark", "Michael Davis"],
+    "Language": "English",
+    "Publication_year": 2021,
+    "ISBN": "978-3456789012",
+    "price": 28.99
+  }
+])
+
+Q2) db.Book.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Book.find({Publisher_name: "BPB"})
+
+Q2) db.Book.find({Publication_year: { $gte: 2019, $lte: 2021 }}, {_id: 0, Book_Title: 1,  Authors: 1 })
+
+Q3) db.Book.count({$where: "this.Authors.length === 3"})
+
+Q4) db.Book.updateOne({Book_Title: "Definitive Guide to MongoDB"},{ $set: {ISBN: "1-4302-3051-7" } });
+
+Q5) db.Book.updateOne({Book_Title: "The Java Language Specification"},{ $push: {Authors: "Alex Buckley"}});
+
+
+========== Slip5.txt ==========
+------------------------ A ------------------------
+Q1)db.Institute.insertMany([
+  {
+    "Name": "Disha Institute",
+    "City": "Pune",
+    "No_of_faculties": 15,
+    "Est_Year": 2005,
+    "Courses": [
+      { "Course_Name": "Java", "Dur_in_month": 6, "Fees": 5000 },
+      { "Course_Name": "Python", "Dur_in_month": 5, "Fees": 4500 }
+    ]
+  },
+  {
+    "Name": "ABC Institute",
+    "City": "Mumbai",
+    "No_of_faculties": 20,
+    "Est_Year": 2010,
+    "Courses": [
+      { "Course_Name": "Java", "Dur_in_month": 7, "Fees": 5500 },
+      { "Course_Name": "Web Development", "Dur_in_month": 6, "Fees": 6000 }
+    ]
+  },
+  {
+    "Name": "XYZ Institute",
+    "City": "Delhi",
+    "No_of_faculties": 12,
+    "Est_Year": 2003,
+    "Courses": [
+      { "Course_Name": "C++", "Dur_in_month": 5, "Fees": 4800 },
+      { "Course_Name": "Data Science", "Dur_in_month": 8, "Fees": 7000 }
+    ]
+  },
+  {
+    "Name": "MNO Institute",
+    "City": "Bangalore",
+    "No_of_faculties": 18,
+    "Est_Year": 2007,
+    "Courses": [
+      { "Course_Name": "Machine Learning", "Dur_in_month": 6, "Fees": 6500 },
+      { "Course_Name": "JavaScript", "Dur_in_month": 4, "Fees": 4200 }
+    ]
+  },
+  {
+    "Name": "EFG Institute",
+    "City": "Chennai",
+    "No_of_faculties": 14,
+    "Est_Year": 2015,
+    "Courses": [
+      { "Course_Name": "Android App Development", "Dur_in_month": 5, "Fees": 5500 },
+      { "Course_Name": "Web Design", "Dur_in_month": 4, "Fees": 4000 }
+    ]
+  },
+  {
+    "Name": "GHI Institute",
+    "City": "Hyderabad",
+    "No_of_faculties": 16,
+    "Est_Year": 2009,
+    "Courses": [
+      { "Course_Name": "Networking", "Dur_in_month": 6, "Fees": 5900 },
+      { "Course_Name": "Database Management", "Dur_in_month": 7, "Fees": 6800 }
+    ]
+  },
+  {
+    "Name": "JKL Institute",
+    "City": "Kolkata",
+    "No_of_faculties": 21,
+    "Est_Year": 2018,
+    "Courses": [
+      { "Course_Name": "Digital Marketing", "Dur_in_month": 3, "Fees": 3500 },
+      { "Course_Name": "Java", "Dur_in_month": 7, "Fees": 5500 }
+    ]
+  },
+  {
+    "Name": "PQR Institute",
+    "City": "Jaipur",
+    "No_of_faculties": 19,
+    "Est_Year": 2004,
+    "Courses": [
+      { "Course_Name": "Python", "Dur_in_month": 6, "Fees": 5200 },
+      { "Course_Name": "Artificial Intelligence", "Dur_in_month": 8, "Fees": 7200 }
+    ]
+  },
+  {
+    "Name": "LMN Institute",
+    "City": "Ahmedabad",
+    "No_of_faculties": 13,
+    "Est_Year": 2017,
+    "Courses": [
+      { "Course_Name": "Web Development", "Dur_in_month": 5, "Fees": 4800 },
+      { "Course_Name": "Data Analysis", "Dur_in_month": 6, "Fees": 6500 }
+    ]
+  },
+  {
+    "Name": "RST Institute",
+    "City": "Chandigarh",
+    "No_of_faculties": 17,
+    "Est_Year": 2019,
+    "Courses": [
+      { "Course_Name": "Java", "Dur_in_month": 7, "Fees": 5500 },
+      { "Course_Name": "Machine Learning", "Dur_in_month": 8, "Fees": 7000 }
+    ]
+  }
+])
+
+Q2)  db.Institute.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Institute.find({Est_Year: { $lt: 2010 }}, {_id: 0, Name: 1 })
+
+Q2) db.Institute.find({"Courses.Course_Name": "Java"})
+
+Q3) db.Institute.updateOne({ Name: "Disha Institute"},{$set: { No_of_faculties: 10} });
+
+Q4) db.Institute.find().sort({ Est_Year: -1 }).limit(3);
+
+Q5) db.Institute.count({City: "Pune", Est_Year: { $gt: 2019 }});
+
+
+========== Slip6.txt ==========
+------------------------ A_------------------------
+Q1) db.Doctor.insertMany([
+  {
+    "Doctor_name": "Dr. Patil",
+    "Contact_No": 9876543210,
+    "City": "Pune",
+    "Qualification": "MBBS",
+    "specialization": ["ENT", "General Surgery"],
+    "hospitals": [
+      { "hospital_name": "Niramay Hospital", "visit_day": "Monday" },
+      { "hospital_name": "Birla Hospital", "visit_day": "Tuesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Sharma",
+    "Contact_No": 9876543211,
+    "City": "Mumbai",
+    "Qualification": "MD",
+    "specialization": ["Cardiology", "Neurology"],
+    "hospitals": [
+      { "hospital_name": "City Hospital", "visit_day": "Wednesday" },
+      { "hospital_name": "Metro Hospital", "visit_day": "Thursday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Patel",
+    "Contact_No": 9876543212,
+    "City": "Pimpri",
+    "Qualification": "MS",
+    "specialization": ["Orthopedics", "Dermatology"],
+    "hospitals": [
+      { "hospital_name": "Pimpri Hospital", "visit_day": "Friday" },
+      { "hospital_name": "Unity Hospital", "visit_day": "Saturday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Khan",
+    "Contact_No": 9876543213,
+    "City": "Mumbai",
+    "Qualification": "MBBS",
+    "specialization": ["Pediatrics", "Radiology"],
+    "hospitals": [
+      { "hospital_name": "Mumbai Central Hospital", "visit_day": "Monday" },
+      { "hospital_name": "Seaside Hospital", "visit_day": "Wednesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Joshi",
+    "Contact_No": 9876543214,
+    "City": "Pune",
+    "Qualification": "MD",
+    "specialization": ["Gynecology", "Obstetrics"],
+    "hospitals": [
+      { "hospital_name": "Aundh Hospital", "visit_day": "Tuesday" },
+      { "hospital_name": "Deccan Hospital", "visit_day": "Thursday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Gupta",
+    "Contact_No": 9876543215,
+    "City": "Mumbai",
+    "Qualification": "MS",
+    "specialization": ["Ophthalmology", "Urology"],
+    "hospitals": [
+      { "hospital_name": "Sunrise Hospital", "visit_day": "Monday" },
+      { "hospital_name": "City Medical Center", "visit_day": "Wednesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Desai",
+    "Contact_No": 9876543216,
+    "City": "Pimpri",
+    "Qualification": "MBBS",
+    "specialization": ["Dentistry", "Psychiatry"],
+    "hospitals": [
+      { "hospital_name": "Pimpri General Hospital", "visit_day": "Thursday" },
+      { "hospital_name": "Sahyadri Hospital", "visit_day": "Friday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Kumar",
+    "Contact_No": 9876543217,
+    "City": "Mumbai",
+    "Qualification": "MD",
+    "specialization": ["Nephrology", "Rheumatology"],
+    "hospitals": [
+      { "hospital_name": "Mumbai Heart Institute", "visit_day": "Tuesday" },
+      { "hospital_name": "Coastal Hospital", "visit_day": "Thursday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Shah",
+    "Contact_No": 9876543218,
+    "City": "Pune",
+    "Qualification": "MBBS",
+    "specialization": ["Dermatology", "Allergy & Immunology"],
+    "hospitals": [
+      { "hospital_name": "Aundh Medical Center", "visit_day": "Monday" },
+      { "hospital_name": "Unity Hospital", "visit_day": "Wednesday" }
+    ]
+  },
+  {
+    "Doctor_name": "Dr. Verma",
+    "Contact_No": 9876543219,
+    "City": "Mumbai",
+    "Qualification": "MD",
+    "specialization": ["Oncology", "Hematology"],
+    "hospitals": [
+      { "hospital_name": "Mumbai Cancer Center", "visit_day": "Monday" },
+      { "hospital_name": "Sunrise Hospital", "visit_day": "Friday" }
+    ]
+  }
+])
+
+Q2) db.Doctor.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Doctor.count({Qualification: "MBBS"});
+
+Q2) db.Doctor.find({City: "Mumbai"}, {_id: 0, Qualification: 1, specialization: 1 });
+
+Q3) db.Doctor.find({specialization: "ENT"}).limit(2);
+
+Q4) db.Doctor.updateOne({Doctor_name: "Dr. Patil"},{ $set: { Qualification: "MD" } });
+
+Q5) db.Doctor.deleteMany({ City: { $ne: "Pimpri" }});
+
+
+========== Slip7.txt ==========
+------------------------ A_------------------------
+
+Q1) db.Result.insertMany([
+  {
+    student_id: 1,
+    student_name: "Mr. Anuj Joshi",
+    class: "TYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 78 }, { subject: "Python", marks: 80 }],
+    grade: 'A'
+  },
+  {
+    student_id: 2,
+    student_name: "Ms. Priya Rane",
+    class: "FYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 90 }, { subject: "Python", marks: 85 }],
+    grade: 'A'
+  },
+  {
+    student_id: 3,
+    student_name: "Mr. Rohit Verma",
+    class: "TYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 65 }, { subject: "Python", marks: 70 }],
+    grade: 'B'
+  },
+  {
+    student_id: 4,
+    student_name: "Ms. Alisha Singh",
+    class: "FYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 75 }, { subject: "Python", marks: 88 }],
+    grade: 'A'
+  },
+  {
+    student_id: 5,
+    student_name: "Mr. Rahul Mehta",
+    class: "TYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 85 }, { subject: "Python", marks: 92 }],
+    grade: 'A'
+  },
+  {
+    student_id: 6,
+    student_name: "Ms. Neena Sharma",
+    class: "FYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 60 }, { subject: "Python", marks: 75 }],
+    grade: 'B'
+  },
+  {
+    student_id: 7,
+    student_name: "Mr. Vikas Patel",
+    class: "TYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 95 }, { subject: "Python", marks: 88 }],
+    grade: 'A'
+  },
+  {
+    student_id: 8,
+    student_name: "Ms. Snehal Desai",
+    class: "FYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 68 }, { subject: "Python", marks: 72 }],
+    grade: 'B'
+  },
+  {
+    student_id: 9,
+    student_name: "Mr. Prashant Jain",
+    class: "TYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 70 }, { subject: "Python", marks: 75 }],
+    grade: 'B'
+  },
+  {
+    student_id: 10,
+    student_name: "Ms. Priyanka Mane",
+    class: "FYBBA_CA",
+    test_marks: [{ subject: "Java", marks: 82 }, { subject: "Python", marks: 78 }],
+    grade: 'A'
+  }
+]);
+
+Q2) db.Result.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Result.find({ grade: { $exists: true } });
+
+Q2) db.Result.find({ "test_marks.subject": "Java", "test_marks.marks": { $gte: 70 } });
+
+Q3) db.Result.find({ student_name: /ne$/ });
+
+Q4) db.Result.find({ "test_marks": { $size: 4 } }, { student_name: 1, class: 1 });
+
+Q5) db.Result.updateOne({ student_name: "Ms. Priya Rane" }, { $set: { percentage: 85 } });
+
+
+
+========== Slip8.txt ==========
+------------------------ A_------------------------
+Q1) db.Album.insertMany([
+  {
+    title: "Album 1",
+    artist: ["Artist A", "Artist B"],
+    released_year: 2000,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 180 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 2",
+    artist: ["Artist C", "Artist D"],
+    released_year: 2005,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 200 },
+      { track_id: 2, track_title: "Track 2", seconds: 238 },
+    ],
+    genre: "Hip-Hop"
+  },
+  {
+    title: "What's Going On",
+    artist: ["Marvin Gaye"],
+    released_year: 1971,
+    tracks: [
+      { track_id: 1, track_title: "What's Going On", seconds: 238 },
+      { track_id: 2, track_title: "Inner City Blues", seconds: 398 },
+      { track_id: 3, track_title: "Mercy Mercy Me", seconds: 274 }
+    ],
+    genre: "Soul"
+  },
+  {
+    title: "Album 3",
+    artist: ["Artist E"],
+    released_year: 2010,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 215 },
+      
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 4",
+    artist: ["Artist F"],
+    released_year: 2022,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 192 },
+      { track_id: 2, track_title: "Track 2", seconds: 238 },
+      { track_id: 3, track_title: "Track 3", seconds: 205 }
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 5",
+    artist: ["Artist G", "Artist H"],
+    released_year: 2003,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 193 },
+      { track_id: 2, track_title: "Track 2", seconds: 238 },
+    ],
+    genre: "Hip-Hop"
+  },
+  {
+    title: "Album 6",
+    artist: ["Artist I"],
+    released_year: 2019,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 187 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 7",
+    artist: ["Artist J"],
+    released_year: 2007,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 198 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 8",
+    artist: ["Artist K"],
+    released_year: 2015,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 194 },
+    ],
+    genre: "Rock"
+  },
+  {
+    title: "Album 9",
+    artist: ["Artist L"],
+    released_year: 2008,
+    tracks: [
+      { track_id: 1, track_title: "Track 1", seconds: 191 },
+    ],
+    genre: "Hip-Hop"
+  }
+])
+
+Q2) db.Album.find({}).pretty()
+
+------------------------ B ------------------------
+
+Q1) db.Album.count({released_year: { $gte: 2010, $lte: 2020 }});
+
+Q2) db.Album.find({genre: "Rock"}).limit(2);
+
+Q3) db.Album.find({"tracks": { $size: 3 }}, {_id: 0, title: 1, artist: 1 })
+
+Q4) db.Album.find({ genre: { $nin: ["Rock", "Hip-Hop"] }});
+
+Q5) db.Album.updateOne({title: "What's Going On","tracks.track_id": 2},{ $set: { "tracks.$.seconds": 6.38 } })
+
+
+========== Slip9.txt ==========
+
+------------------------ A ------------------------
+
+A) Create a ‘Contributor’ collection of documents with the following fields:[15 M]
+
+    { 
+        Contributor_name: "Rohit Sawant",
+        Branch:"CSE",
+        Join_year:2019,
+        Language:["C++", "Java"],
+        Articles:[{Language:"C++",tArticles:20,pArticles:30},{Language:"Java",tArticl
+        es:50,pArticles:30}],
+        Personal_Info: {age:24, Sem_Marks:[70, 80, 77, 81]}
+    }
+
+db.createCollection("Contributor");
+
+1) Insert at least 10 documents in a collection.
+db.Contributor.insertMany([
+  {
+    Contributor_name: "Rohit Sawant",
+    Branch: "CSE",
+    Join_year: 2019,
+    Language: ["C++", "Java"],
+    Articles: [
+      { Language: "C++", tArticles: 20, pArticles: 30 },
+      { Language: "Java", tArticles: 50, pArticles: 30 }
+    ],
+    Personal_Info: { age: 24, Sem_Marks: [70, 80, 77, 81] }
+  },
+  {
+    Contributor_name: "Amit Patel",
+    Branch: "ECE",
+    Join_year: 2020,
+    Language: ["Java", "Python"],
+    Articles: [
+      { Language: "Java", tArticles: 15, pArticles: 25 },
+      { Language: "Python", tArticles: 10, pArticles: 20 }
+    ],
+    Personal_Info: { age: 22, Sem_Marks: [75, 85, 70, 78] }
+  },
+  {
+    Contributor_name: "Priya Sharma",
+    Branch: "CSE",
+    Join_year: 2018,
+    Language: ["C++", "Python"],
+    Articles: [
+      { Language: "C++", tArticles: 30, pArticles: 35 },
+      { Language: "Python", tArticles: 25, pArticles: 30 }
+    ],
+    Personal_Info: { age: 25, Sem_Marks: [73, 82, 75, 80] }
+  },
+  {
+    Contributor_name: "Suresh Kumar",
+    Branch: "Mechanical",
+    Join_year: 2019,
+    Language: ["Java", "C"],
+    Articles: [
+      { Language: "Java", tArticles: 10, pArticles: 15 },
+      { Language: "C", tArticles: 15, pArticles: 20 }
+    ],
+    Personal_Info: { age: 26, Sem_Marks: [68, 78, 72, 79] }
+  },
+  {
+    Contributor_name: "Neha Gupta",
+    Branch: "IT",
+    Join_year: 2021,
+    Language: ["Python", "JavaScript"],
+    Articles: [
+      { Language: "Python", tArticles: 12, pArticles: 18 },
+      { Language: "JavaScript", tArticles: 18, pArticles: 22 }
+    ],
+    Personal_Info: { age: 21, Sem_Marks: [80, 88, 74, 79] }
+  },
+  {
+    Contributor_name: "Vikram Singh",
+    Branch: "ECE",
+    Join_year: 2019,
+    Language: ["C", "Java"],
+    Articles: [
+      { Language: "C", tArticles: 18, pArticles: 25 },
+      { Language: "Java", tArticles: 28, pArticles: 30 }
+    ],
+    Personal_Info: { age: 23, Sem_Marks: [72, 81, 76, 83] }
+  },
+  {
+    Contributor_name: "Shikha Jain",
+    Branch: "CSE",
+    Join_year: 2020,
+    Language: ["Java", "Python"],
+    Articles: [
+      { Language: "Java", tArticles: 22, pArticles: 30 },
+      { Language: "Python", tArticles: 20, pArticles: 25 }
+    ],
+    Personal_Info: { age: 22, Sem_Marks: [78, 85, 79, 86] }
+  },
+  {
+    Contributor_name: "Ajay Sharma",
+    Branch: "ECE",
+    Join_year: 2021,
+    Language: ["C", "Python"],
+    Articles: [
+      { Language: "C", tArticles: 15, pArticles: 20 },
+      { Language: "Python", tArticles: 10, pArticles: 15 }
+    ],
+    Personal_Info: { age: 20, Sem_Marks: [85, 92, 87, 90] }
+  },
+  {
+    Contributor_name: "Sangeeta Verma",
+    Branch: "Mechanical",
+    Join_year: 2022,
+    Language: ["C++", "Java"],
+    Articles: [
+      { Language: "C++", tArticles: 10, pArticles: 15 },
+      { Language: "Java", tArticles: 12, pArticles: 18 }
+    ],
+    Personal_Info: { age: 19, Sem_Marks: [90, 88, 85, 92] }
+  },
+  {
+    Contributor_name: "Anand Singh",
+    Branch: "IT",
+    Join_year: 2022,
+    Language: ["Java", "JavaScript"],
+    Articles: [
+      { Language: "Java", tArticles: 8, pArticles: 12 },
+      { Language: "JavaScript", tArticles: 20, pArticles: 25 }
+    ],
+    Personal_Info: { age: 20, Sem_Marks: [88, 86, 83, 90] }
+  }
+]);
+
+2) Display all documents of ‘Contributor’ collection in proper format.
+db.Contributor.find().pretty();
+
+------------------------ B ------------------------
+
+1) Append two languages named “Python�? and “C�? to contributor “Rohit Sawant�?.
+db.Contributor.updateOne({ Contributor_name: "Rohit Sawant" },{$push: {Language: { $each: ["Python", "C"] }}});
+
+2) Delete the first matched document having Branch “CSE�? or Join_Year less than 2020.
+db.Contributor.deleteOne({$or: [{Branch:"CSE"},{"Join_Year":{"$lt":2020}}]})
+
+3) Display the latest five Contributors joined in easy-to-read format.
+db.Contributor.find().sort({ Join_year: -1 }).limit(5).pretty();
+
+4) Display documents having “CSE�? branch. (Use cursor)
+var cursor = db.Contributor.find({ Branch: "CSE" });
+
+while (cursor.hasNext()) {
+  var document = cursor.next();
+  printjson(document);
+}
+
+5) Give the name and branch of contributor whose age is greater than or equal to 20.
+db.Contributor.find({ "Personal_Info.age": { $gte: 20 } }, { Contributor_name: 1, Branch: 1, _id: 0 })
+
+
+
